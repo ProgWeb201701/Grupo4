@@ -1,9 +1,8 @@
 <?php
-$hostname = "localhost";
-$database = "tcc";
-$username = "root";
-$password = "";
-$connection = mysqli_connect($hostname, $username, $password, $database) or die ("Error " . mysqli_error($connection));
+include_once '../connection/connection.php';
+
+$conn = new Connection();
+$connection = $conn->getConnection();
 
 $siape = $_GET['siape'];
 $nome = $_GET['nome'];
@@ -18,4 +17,6 @@ if($resultado==1){
 } else {
 	echo $resultado;
 }
+
+$conn->disconnect();
 ?>
