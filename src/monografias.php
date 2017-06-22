@@ -99,26 +99,39 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        [CONTENT]
-                                    </td>
-                                    <td>
-                                        [CONTENT]
-                                    </td>
-                                    <td>
-                                        [CONTENT]
-                                    </td>
-                                    <td>
-                                        [CONTENT]
-                                    </td>
-                                    <td>
-                                        <a href=""><i class="fa fa-download" aria-hidden="true"></i><span> Baixar</span></a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="avaliar.html"><i class="fa fa-arrow-right" aria-hidden="true"></i><span> Avaliar</span></a>
-                                    </td>
-                                </tr>
+                                <?php 
+                                    include_once './connection/connection.php';
+
+                                    $conn = new Connection();
+                                    $connection = $conn->getConnection();
+
+                                    $sql = "SELECT * FROM monografia;";
+
+                                    $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
+
+                                    while($row = $resultado->fetch_assoc()) {
+                                            echo "<tr>
+                                                    <td>
+                                                        ".$row["titulo"]."
+                                                    </td>
+                                                    <td>
+                                                        ".$row["versao"]."
+                                                    </td>
+                                                    <td>
+                                                        ".$row["aluno_matricula"]."
+                                                    </td>
+                                                    <td>
+                                                        TURMA
+                                                    </td>
+                                                    <td>
+                                                        <a href=''><i class='fa fa-download' aria-hidden='true'></i><span> Baixar</span></a>
+                                                    </td>
+                                                    <td class='text-center'>
+                                                        <a href='avaliar.html'><i class='fa fa-arrow-right' aria-hidden='true'></i><span> Avaliar</span></a>
+                                                    </td>
+                                                </tr>";
+                                    } 
+                                ?>
                             </tbody>
                         </table>
                     </div>
