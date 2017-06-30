@@ -25,7 +25,6 @@
                     </button>
                     <a class="navbar-brand" href="#"><i class="fa fa-square-o "></i>&nbsp;TCCs</a>
                 </div>
-                
 
             </div>
         </div>
@@ -38,8 +37,9 @@
             
                     </li>
 
+
                     <li>
-                        <a href="cadastrar.html"><i class="fa fa-user"></i>Cadastrar</a>
+                        <a href="login.html"><i class="fa fa-user"></i>Logar</a>
                     </li>
                 </ul>
 
@@ -50,8 +50,8 @@
         <div id="page-wrapper" >
             <div id="page-inner">
                 <div class="row">
-                    <div class="col-md-12 text-center">
-                        <h2>Login</h2>
+                    <div class="col-md-12">
+                        <h2>Cadastro de usuário</h2>
                         <hr/>
                     </div>
 
@@ -59,43 +59,49 @@
                   
                  <!-- /. ROW  -->           
                 </div>
+
                 <div class="row">
-            <div class="col-sm-offset-4 col-md-4">
-                <form class="m-t-1" action="indexProfessor.html" method="post" id="login" autocomplete="off">
-                    <input id="anchor" type="hidden" name="anchor" value="">
-                    <script>document.getElementById('anchor').value = location.hash;</script>
-                    <br>
-                    <label for="usuario" class="sr-only">
-                            Identificação de usuário
-                    </label>
-                    <input type="text" name="usuario" id="usuario"
-                        class="form-control"
-                        value=""
-                        placeholder="Identificação de usuário">
-                        
-                    <label for="password" class="sr-only">Senha</label>
-                    <input type="password" name="password" id="password" value=""
-                        class="form-control"
-                        placeholder="Senha"
-                        autocomplete="off">
-
-                        <div class="rememberpass m-t-1">
-                            <input type="checkbox" name="rememberusername" id="rememberusername" value="1"  />
-                            <label for="rememberusername">Lembrar identificação de usuário</label>
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                        <label class="control-label col-sm-2" for="nome">Nome:</label>
+                        <div class="col-sm-6">
+                          <input type="text" class="form-control" id="nome" placeholder="Informe Nome">
                         </div>
-                        <br>
-
-                    <button type="submit" class="btn btn-primary btn-block m-t-1" id="loginbtn">Acessar</button>
-                </form>
-                <div class="forgetpass m-t-1 text-center">
-                    <br>
-                    <p><a href="#">Esqueceu o seu usuário ou senha?</a></p>
+                      </div>
+                       <div class="form-group">
+                        <label class="control-label col-sm-2" for="matriculaSiape">Matricula/Siape:</label>
+                        <div class="col-sm-6">
+                          <input type="text" class="form-control" id="matriculaSiape" placeholder="Informe Matricula ou Siape">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-2" for="email">Email:</label>
+                        <div class="col-sm-6">
+                          <input type="email" class="form-control" id="email" placeholder="Informe Email">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-2" for="senha">Senha:</label>
+                        <div class="col-sm-6"> 
+                          <input type="password" class="form-control" id="senha" placeholder="Informe Senha">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-2" for="aluno_ou_professor">Sou:</label>
+                        <div class="col-sm-6"> 
+                          <select class="form-control" name="aluno_ou_professor" id="aluno_ou_professor">
+                              <option value="aluno">Aluno</option>
+                              <option value="professor">Professor</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group"> 
+                        <div class="col-sm-offset-2 col-sm-6">
+                          <button type="submit" class="btn btn-default">Cadastrar</button>
+                        </div>
+                      </div>
+                    </form>
                 </div>
-            </div>
-
-            
-                
-
         </div>
              <!-- /. PAGE INNER  -->
         </div>
