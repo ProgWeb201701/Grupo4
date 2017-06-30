@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
       <meta charset="utf-8" />
@@ -47,7 +47,7 @@
                         <a href="indexProfessor.html"><i class="fa fa-desktop "></i>Inicio</a>
                     </li>
                     <li>
-                        <a href="turmas.php"><i class="fa fa-users "></i>Turmas</a>
+                        <a href="#"><i class="fa fa-users "></i>Turmas</a>
             
                     </li>
 
@@ -75,22 +75,13 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        Título
-                                    </th>
-                                    <th>
-                                        Versão
-                                    </th>
-                                    <th>
-                                        Aluno
-                                    </th>
-                                    <th>
                                         Turma
                                     </th>
                                     <th>
-                                        Download
+                                        Coordenador
                                     </th>
                                     <th>
-                                        
+                                        Alunos
                                     </th>
                                 </tr>
                             </thead>
@@ -101,29 +92,20 @@
                                     $conn = new Connection();
                                     $connection = $conn->getConnection();
 
-                                    $sql = "SELECT * FROM monografia INNER JOIN aluno ON matricula = aluno_matricula;";
+                                    $sql = "SELECT `turma`.`nomeTurma`, `professor`.`nome` FROM `professor` LEFT JOIN `turma` ON `turma`.`Professor_siape` = `professor`.`siape` WHERE (`turma`.`nomeTurma` IS NOT NULL);";
 
                                     $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
 
                                     while($row = $resultado->fetch_assoc()) {
                                             echo "<tr>
                                                     <td>
-                                                        ".$row["titulo"]."
-                                                    </td>
-                                                    <td>
-                                                        ".$row["versao"]."
+                                                        ".$row["nomeTurma"]."
                                                     </td>
                                                     <td>
                                                         ".$row["nome"]."
                                                     </td>
                                                     <td>
-                                                        TURMA
-                                                    </td>
-                                                    <td>
-                                                        <a href=''><i class='fa fa-download' aria-hidden='true'></i><span> Baixar</span></a>
-                                                    </td>
-                                                    <td class='text-center'>
-                                                        <a href='avaliar.html'><i class='fa fa-arrow-right' aria-hidden='true'></i><span> Avaliar</span></a>
+                                                        <a href='alunos.php?nomeTurma=".$row["nomeTurma"]."'><i class='fa fa-arrow-right' aria-hidden='true'></i><span> Ver Alunos</span></a>
                                                     </td>
                                                 </tr>";
                                     } 
