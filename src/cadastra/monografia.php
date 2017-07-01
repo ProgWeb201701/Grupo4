@@ -11,6 +11,7 @@ $matricula = $_GET['matricula'];
 $sql = "INSERT INTO monografia (versao, titulo, matricula) VALUES ('$versao', '$titulo', '$matricula');";
 
 $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
+$array = mysql_fetch_array($resultado);
 
 if($resultado==1){
 	echo "SUCESSO!";
