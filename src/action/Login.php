@@ -1,5 +1,5 @@
 <?php
-include_once './connection/connection.php';
+include_once '../connection/connection.php';
 
 $conn = new Connection();
 $connection = $conn->getConnection();
