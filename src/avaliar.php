@@ -47,13 +47,13 @@
                         <a href="indexProfessor.html"><i class="fa fa-desktop "></i>Inicio</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-users "></i>Turmas</a>
+                        <a href="turmas.php"><i class="fa fa-users "></i>Turmas</a>
             
                     </li>
 
 
                     <li>
-                        <a href="monografias.html"><i class="fa fa-edit"></i>Monografias</a>
+                        <a href="monografias.php"><i class="fa fa-edit"></i>Monografias</a>
                     </li>
                     
             </div>
@@ -64,7 +64,8 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-	                    <h2>Avaliar TCC</h2>
+	                    <h2>Avaliar TCC: <?php echo $_GET["titulo"]; ?></h2>
+
 						<hr />
                     </div>
 
@@ -73,26 +74,26 @@
                  <!-- /. ROW  -->           
     			</div>
     			<div class="row">
-    				<form class="form-horizontal">
+    				<form class="form-horizontal" action="./action/avaliar.php" method="post">
 					  <div class="form-group">
 					    <label class="control-label col-sm-2" for="nota">Nota:</label>
 					    <div class="col-sm-9">
-					    	<input type="number" class="form-control" id="nota" placeholder="Nota">
+					    	<input type="number" class="form-control" id="nota" placeholder="Nota" name="nota">
 					    </div>
 					  </div>
 					  <div class="form-group">
 					    <label class="control-label col-sm-2" for="feedback">Feedback:</label>
 					    <div class="col-sm-9"> 
-					      <input type="file" class="form-control" id="feedback" placeholder="Enviar o arquivo da monografia com os comentários">
+					      <input type="file" class="form-control" id="feedback" placeholder="Enviar o arquivo da monografia com os comentários" name="feedback">
 					    </div>
 					  </div>
 					  <div class="form-group">
 					    <label class="control-label col-sm-2" for="comentarios">Comentários:</label>
 					    <div class="col-sm-9">
-					      <textarea class="form-control" rows="5" id="comentarios" placeholder="Comentários adicionais sobre o trabalho"></textarea>
+					      <textarea class="form-control" rows="5" id="comentarios" placeholder="Comentários adicionais sobre o trabalho" name="comentarios"></textarea>
 					    </div>
 					  </div>
-					  <div class="form-group"> 
+					  <div class="form-group">
 					    <div class="col-sm-offset-2 col-sm-9">
 					      <button type="submit" class="btn btn-default">Enviar Avaliação</button>
 					    </div>

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
       <meta charset="utf-8" />
@@ -64,7 +64,7 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Monografias</h2> 
+                     <h2>Alunos</h2> 
                      <hr />  
                     </div>
                 </div>              
@@ -75,22 +75,13 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        Título
-                                    </th>
-                                    <th>
-                                        Versão
-                                    </th>
-                                    <th>
-                                        Aluno
-                                    </th>
-                                    <th>
                                         Turma
                                     </th>
                                     <th>
-                                        Download
+                                        Nome do Aluno
                                     </th>
                                     <th>
-                                        
+                                        Matricula
                                     </th>
                                 </tr>
                             </thead>
@@ -101,29 +92,26 @@
                                     $conn = new Connection();
                                     $connection = $conn->getConnection();
 
-                                    $sql = "SELECT * FROM monografia INNER JOIN aluno ON matricula = aluno_matricula;";
+                                    $Turma = $_GET["nomeTurma"];
+
+                                    $sql = "SELECT `aluno`.`nome`, `turma_has_aluno`.`Turma_nomeTurma`, `turma_has_aluno`.`Aluno_matricula`
+                                            FROM `turma_has_aluno`
+                                                LEFT JOIN `aluno` ON `turma_has_aluno`.`Aluno_matricula` = `aluno`.`matricula`
+                                            WHERE (`turma_has_aluno`.`Turma_nomeTurma` = '".$Turma."');
+                                            ";
 
                                     $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
 
                                     while($row = $resultado->fetch_assoc()) {
                                             echo "<tr>
                                                     <td>
-                                                        ".$row["titulo"]."
-                                                    </td>
-                                                    <td>
-                                                        ".$row["versao"]."
+                                                        ".$row["Turma_nomeTurma"]."
                                                     </td>
                                                     <td>
                                                         ".$row["nome"]."
                                                     </td>
                                                     <td>
-                                                        TURMA
-                                                    </td>
-                                                    <td>
-                                                        <a href=''><i class='fa fa-download' aria-hidden='true'></i><span> Baixar</span></a>
-                                                    </td>
-                                                    <td class='text-center'>
-                                                        <a href='avaliar.php?titulo=".$row["titulo"]."'><i class='fa fa-arrow-right' aria-hidden='true'></i><span> Avaliar</span></a>
+                                                        ".$row["Aluno_matricula"]."
                                                     </td>
                                                 </tr>";
                                     } 

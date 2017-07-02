@@ -64,7 +64,7 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Monografias</h2> 
+                     <h2>Turmas</h2> 
                      <hr />  
                     </div>
                 </div>              
