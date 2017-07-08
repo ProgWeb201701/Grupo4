@@ -1,8 +1,8 @@
 ﻿<?php session_start(); 
-if((isset($_SESSION['sou'])== 2)){
+if($_SESSION['sou'] == 2){
     echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para isso');window.location.href='./indexProfessor.php';</script>";
     } 
-    if((isset($_SESSION['sou']) == 3)){
+    if($_SESSION['sou'] == 1){
     echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para isso');window.location.href='./indexAluno.php';</script>";
         die();
     }?>
