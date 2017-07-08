@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿<?php session_start(); 
+if((isset($_SESSION['sou'])== 3)){
+    echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para isso');window.location.href='./indexAluno.php';</script>"
+    } 
+    if((isset($_SESSION['sou']) == 1)){
+    echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para isso');window.location.href='./indexCoordenador.php';</script>";
+        die();
+    }?>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -34,7 +42,7 @@
             </div>
         </div>
         <!-- /. NAV TOP  -->
-        <!-- INÍCIO PAGE COORDENADOR --> 
+        <!-- INÍCIO PAGE ALUNO --> 
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
@@ -45,7 +53,7 @@
 
 
                     <li>
-                        <a href="indexCoordenador.html"><i class="fa fa-desktop "></i>Inicio</a>
+                        <a href="indexProfessor.html"><i class="fa fa-desktop "></i>Inicio</a>
                     </li>
                     <li>
                         <a href="turmas.php"><i class="fa fa-users "></i>Turmas</a>
@@ -54,15 +62,7 @@
 
 
                     <li>
-                        <a href="#"><i class="fa fa-edit "></i>Monografia<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="atribuirMonografia.php">Atribuir monografia</a>
-                            </li>
-                            <li>
-                                <a href="monografias.php">Monografias</a>
-                            </li>
-                        </ul>
+                        <a href="monografias.php"><i class="fa fa-edit"></i>Monografias</a>
                     </li>
                     
             </div>

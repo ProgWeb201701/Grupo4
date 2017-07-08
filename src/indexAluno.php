@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿<?php session_start(); 
+if((isset($_SESSION['sou'])== 2)){
+    echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para isso');window.location.href='./indexProfessor.php';</script>"
+    } 
+    if((isset($_SESSION['sou']) == 1)){
+    echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para isso');window.location.href='./indexCoordenador.php';</script>";
+        die();
+    }?>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -45,16 +53,21 @@
 
 
                     <li>
-                        <a href="indexProfessor.html"><i class="fa fa-desktop "></i>Inicio</a>
+                        <a href="indexAluno.html"><i class="fa fa-desktop "></i>Inicio</a>
                     </li>
                     <li>
-                        <a href="turmas.php"><i class="fa fa-users "></i>Turmas</a>
-            
-                    </li>
-
-
-                    <li>
-                        <a href="monografias.php"><i class="fa fa-edit"></i>Monografias</a>
+                        <a href="#"><i class="fa fa-edit "></i>Monografia<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="enviarMonografia.php">Enviar monografia</a>
+                            </li>
+                            <li>
+                                <a href="#">Visualizar feedback</a>
+                            </li>
+                            <li>
+                                <a href="avaliacoes.php">Visualizar avaliações</a>
+                            </li>
+                        </ul>
                     </li>
                     
             </div>
@@ -65,7 +78,7 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Olá, Professor</h2>
+                        <h2>Olá, Aluno</h2>
                     </div>
                 </div>
                 

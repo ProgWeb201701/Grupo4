@@ -16,15 +16,21 @@ $senha = $_POST["password"];
 	    die();
     }else{
     	if (mysqli_num_rows($aluno)>0) {
-		    setcookie("matricula", $usuario);
-		    header('Location: http://localhost/grupo4/src/indexAluno.html');
+		    session_start();
+		    $_SESSION['sou'] = 3;
+		 	$_SESSION['usuario'] = $usuario;
+		    header('Location: http://localhost/grupo4/src/indexAluno.php');
     	} else if (mysqli_num_rows($professor)>0){
         if(mysqli_num_rows($coordenador)>0){
-        setcookie("siape", $usuario);
-        header('Location: http://localhost/grupo4/src/indexCoordenador.html');
+        	session_start();
+        	$_SESSION['sou'] = 3;
+		 	$_SESSION['usuario'] = $usuario;
+        header('Location: http://localhost/grupo4/src/indexCoordenador.php');
         } else {
-    		setcookie("siape", $usuario);
-	    	header('Location: http://localhost/grupo4/src/indexProfessor.html');
+    		session_start();
+        	$_SESSION['sou'] = 2;
+		 	$_SESSION['usuario'] = $usuario;
+	    	header('Location: http://localhost/grupo4/src/indexProfessor.php');
     	}
 	    
     }
