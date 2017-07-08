@@ -51,7 +51,7 @@
                         <a href="#"><i class="fa fa-edit "></i>Monografia<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="enviarMonografia.html">Enviar monografia</a>
+                                <a href="enviarMonografia.php">Enviar monografia</a>
                             </li>
                             <li>
                                 <a href="#">Visualizar feedback</a>

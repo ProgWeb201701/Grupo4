@@ -81,7 +81,20 @@
                         <div class="form-group">
                         <label class="control-label col-sm-2" for="titulo">Título:</label>
                         <div class="col-sm-8">
-                          <input type="text" class="form-control" id="titulo" placeholder="Informe Título" required="true">
+                          
+                          <?php 
+                                include_once './connection/connection.php';
+
+                                $conn = new Connection();
+                                $connection = $conn->getConnection();
+
+                                $sql = "SELECT titulo FROM monografia";
+
+                                $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
+
+                                $row = $resultado->fetch_assoc();
+                                        echo "<input type='text' class='form-control' id='titulo' placeholder='".$row['titulo']."' disabled='true'>";
+                            ?>
                         </div>
                       </div>
 
@@ -90,7 +103,7 @@
                         <div class="col-sm-8">
                           <input type="text" class="form-control" id="versao" placeholder="Informe Versão da Monografia" required="true">
                         </div>
-                      </div>
+                       </div>
 
                       <div class="form-group">
                         <label class="control-label col-sm-2" for="abstract">Abstract:</label>
