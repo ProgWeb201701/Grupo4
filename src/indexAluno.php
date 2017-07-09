@@ -82,7 +82,7 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Olá, Aluno</h2>
+                        <h2>Olá, <?php echo $_SESSION['usuario'];?></h2>
                     </div>
                 </div>
                 
