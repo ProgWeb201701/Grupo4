@@ -1,3 +1,12 @@
+<?php 
+    session_start();
+    if (!isset($_SESSION['sou'])) {
+        echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para acessar essa pagina');window.location.href='./login.html';</script>";
+    }
+    if($_SESSION['sou']== 1){
+        echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para isso');window.location.href='./indexAluno.php';</script>";
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -134,7 +143,6 @@
                     <div class="col-md-12">
                         <h5>Informações</h5>
                             <p>Texto de exemplo de footer</p>
-
                     </div>
                 </div>
                 <!-- /. ROW  -->

@@ -99,6 +99,7 @@
                                 $row = $resultado->fetch_assoc();
                                         echo $row['nome'];
                             ?></h2>
+                            <hr>
                     </div>
                 </div>
                 

@@ -105,7 +105,7 @@
                                 $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
 
                                 $row = $resultado->fetch_assoc();
-                                        echo "<input type='text' class='form-control' id='titulo' placeholder='".$row['titulo']."' disabled='true'>";
+                                        echo "<input type='text' class='form-control' id='titulo' name='titulo' placeholder='".$row['titulo']."' disabled='true'>";
                             ?>
                         </div>
                       </div>
@@ -113,33 +113,33 @@
                        <div class="form-group">
                         <label class="control-label col-sm-2" for="versao">Versão:</label>
                         <div class="col-sm-8">
-                          <input type="text" class="form-control" id="versao" placeholder="Informe Versão da Monografia" required="true">
+                          <input type="text" class="form-control" id="versao" name="versao" placeholder="Informe Versão da Monografia" required="true">
                         </div>
                        </div>
 
                       <div class="form-group">
                         <label class="control-label col-sm-2" for="abstract">Abstract:</label>
                         <div class="col-sm-8">
-                          <textarea class="form-control" rows="10" id="abstract" placeholder="Insira o Abstract" required="true"></textarea>
+                          <textarea class="form-control" rows="10" id="abstract" name="abstract" placeholder="Insira o Abstract" required="true"></textarea>
                         </div>
                       </div>
 
                       <div class="form-group">
                         <label class="control-label col-sm-2" for="file">Arquivo:</label>
                         <div class="col-sm-8">
-                          <input type="file" class="form-control" id="file" required="true">
+                          <input type="file" class="form-control" id="file" name='file' required="true">
                         </div>
                       </div>
 
                       <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-8">
-                          <label class="checkbox-inline "><input type="checkbox" value="true" id="final">Esta é a versão final do meu trabalho.</label>
+                          <label class="checkbox-inline "><input type="checkbox" value="true" id="final" name="final">Esta é a versão final do meu trabalho.</label>
                         </div>
                       </div>
                 
                       <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-8">
-                          <button type="submit" class="btn btn-default" value="Enviar">Enviar</button>
+                          <button type="submit" id="submit" name="submit" class="btn btn-default" value="Enviar">Enviar</button>
                         </div>
                       </div>
                     </form>

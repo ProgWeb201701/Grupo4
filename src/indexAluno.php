@@ -69,7 +69,7 @@
                                 <a href="#">Visualizar feedback</a>
                             </li>
                             <li>
-                                <a href="avaliacoes.php">Visualizar avaliações</a>
+                                <a href="avaliacoesAluno.php">Visualizar avaliações</a>
                             </li>
                         </ul>
                     </li>
@@ -95,6 +95,7 @@
                                 $row = $resultado->fetch_assoc();
                                         echo $row['nome'];
                             ?></h2>
+                            <hr>
                     </div>
                 </div>
                 
@@ -118,9 +119,6 @@
                                     </th>
                                     <th>
                                         Download
-                                    </th>
-                                    <th>
-                                        
                                     </th>
                                 </tr>
                             </thead>
@@ -152,9 +150,6 @@
                                                     <td>
                                                         <a href=''><i class='fa fa-download' aria-hidden='true'></i><span> Baixar</span></a>
                                                     </td>
-                                                    <td class='text-center'>
-                                                        <a href='avaliar.php?titulo=".$row["titulo"]."'><i class='fa fa-arrow-right' aria-hidden='true'></i><span> Avaliar</span></a>
-                                                    </td>
                                                 </tr>";
                                     } 
                                 ?>
@@ -166,7 +161,7 @@
                   <div class="row">
                     <div class="col-md-12">
                         <h5>Informações</h5>
-                            <p>As monografias defendidas serão disponibilizadas para a leitura de todos.</p>
+                            <p>As monografias já defendidas serão disponibilizadas para a leitura de todos.</p>
 
                     </div>
                 </div>

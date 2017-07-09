@@ -1,13 +1,7 @@
-﻿<?php 
+<?php 
     session_start();
     if (!isset($_SESSION['sou'])) {
         echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para acessar essa pagina');window.location.href='./login.html';</script>";
-    }
-    if($_SESSION['sou']== 1){
-        echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para isso');window.location.href='./indexAluno.php';</script>";
-    } 
-    if($_SESSION['sou'] == 3){
-        echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para isso');window.location.href='./indexCoordenador.php';</script>";
     }
 ?>
 <!DOCTYPE html>
@@ -57,16 +51,21 @@
 
 
                     <li>
-                        <a href="indexProfessor.php"><i class="fa fa-desktop "></i>Inicio</a>
+                        <a href="indexAluno.html"><i class="fa fa-desktop "></i>Inicio</a>
                     </li>
                     <li>
-                        <a href="turmas.php"><i class="fa fa-users "></i>Turmas</a>
-            
-                    </li>
-
-
-                    <li>
-                        <a href="monografias.php"><i class="fa fa-edit"></i>Monografias</a>
+                        <a href="#"><i class="fa fa-edit "></i>Monografia<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="enviarMonografia.php">Enviar monografia</a>
+                            </li>
+                            <li>
+                                <a href="#">Visualizar feedback</a>
+                            </li>
+                            <li>
+                                <a href="#">Visualizar avaliações</a>
+                            </li>
+                        </ul>
                     </li>
                     
             </div>
@@ -77,46 +76,27 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                         <h2>Olá, <?php 
-                                include_once './connection/connection.php';
-
-                                $conn = new Connection();
-                                $connection = $conn->getConnection();
-
-                                $sql = "SELECT nome FROM professor WHERE siape = '".$_SESSION['usuario']."'";
-
-                                $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
-
-                                $row = $resultado->fetch_assoc();
-                                        echo $row['nome'];
-                            ?></h2>
-                            <hr>
+                     <h2>Avaliações</h2> 
+                     <hr />  
                     </div>
-                </div>
-                
-                
+                </div>              
+                 <!-- /. ROW  -->
                 <div class="row">
                     <div class="col-md-12">
                         <table class="table table-striped table-hover table-responsive">
                             <thead>
                                 <tr>
                                     <th>
-                                        Título
+                                        Professor avaliador
                                     </th>
                                     <th>
-                                        Versão
+                                        Nota
                                     </th>
                                     <th>
-                                        Aluno
+                                        Feedback
                                     </th>
-                                    <th>
-                                        Turma
-                                    </th>
-                                    <th>
-                                        Download
-                                    </th>
-                                    <th>
-                                        
+                                    <th class="text-center">
+                                        Observação
                                     </th>
                                 </tr>
                             </thead>
@@ -127,29 +107,28 @@
                                     $conn = new Connection();
                                     $connection = $conn->getConnection();
 
-                                    $sql = "SELECT * FROM monografia INNER JOIN aluno ON matricula = aluno_matricula;";
+                                    $sql1 = "SELECT idMonografia FROM monografia WHERE aluno_matricula = ".$_SESSION['usuario']."";
+                                    $resultadoIdMonografia = mysqli_query($connection, $sql1) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
+                                    $row = $resultadoIdMonografia->fetch_assoc();
+                                    $idMonografia = $row['idMonografia'];
+
+                                    $sql = "SELECT * FROM avaliacao INNER JOIN prof_avalia_monografia ON idAvaliacao = Avaliacao_idAvaliacao INNER JOIN professor ON siape = Professor_siape WHERE Monografia_idMonografia = '".$idMonografia."';";
 
                                     $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
 
                                     while($row = $resultado->fetch_assoc()) {
                                             echo "<tr>
                                                     <td>
-                                                        ".$row["titulo"]."
-                                                    </td>
-                                                    <td>
-                                                        ".$row["versao"]."
-                                                    </td>
-                                                    <td>
                                                         ".$row["nome"]."
                                                     </td>
                                                     <td>
-                                                        TURMA
+                                                        ".$row["nota"]."
                                                     </td>
                                                     <td>
                                                         <a href=''><i class='fa fa-download' aria-hidden='true'></i><span> Baixar</span></a>
                                                     </td>
                                                     <td class='text-center'>
-                                                        <a href='avaliar.php?titulo=".$row["titulo"]."'><i class='fa fa-arrow-right' aria-hidden='true'></i><span> Avaliar</span></a>
+                                                        ".$row["observacao"]."
                                                     </td>
                                                 </tr>";
                                     } 
@@ -158,16 +137,17 @@
                         </table>
                     </div>
                 </div>
+            </div>
+        </div>
+                <!-- /. ROW  -->
                 <hr />
-                  <div class="row">
+                <div class="row">
                     <div class="col-md-12">
                         <h5>Informações</h5>
-                            <p>As monografias já defendidas serão disponibilizadas para a leitura de todos.</p>
-
+                            <p>Texto de exemplo de footer</p>
                     </div>
                 </div>
                 <!-- /. ROW  -->
-        
 
             </div>
             <!-- /. PAGE INNER  -->
