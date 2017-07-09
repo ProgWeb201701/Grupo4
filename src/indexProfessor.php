@@ -77,7 +77,19 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Olá, Professor</h2>
+                         <h2>Olá, <?php 
+                                include_once './connection/connection.php';
+
+                                $conn = new Connection();
+                                $connection = $conn->getConnection();
+
+                                $sql = "SELECT nome FROM professor WHERE siape = '".$_SESSION['usuario']."'";
+
+                                $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
+
+                                $row = $resultado->fetch_assoc();
+                                        echo $row['nome'];
+                            ?></h2>
                     </div>
                 </div>
                 

@@ -88,7 +88,7 @@
                 </div>
                 
                 <div class="row">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" method="post" action="action/recebe_upload.php" enctype="multipart/form-data">
 
                         <div class="form-group">
                         <label class="control-label col-sm-2" for="titulo">Título:</label>
@@ -139,7 +139,7 @@
                 
                       <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-8">
-                          <button type="submit" class="btn btn-default">Enviar</button>
+                          <button type="submit" class="btn btn-default" value="Enviar">Enviar</button>
                         </div>
                       </div>
                     </form>
