@@ -74,28 +74,34 @@
                  <!-- /. ROW  -->           
     			</div>
     			<div class="row">
-    				<form class="form-horizontal" action="./action/avaliar.php" method="post">
+    				<form class="form-horizontal" action="./action/avaliar.php" method="post" enctype="multipart/form-data">
 					  <div class="form-group">
+                        <label class="control-label col-sm-2" for="idMonografia">ID da Monografia:</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" id="idMonografia" name="idMonografia" value=<?php echo "'".$_GET['idMonografia']."'"; ?> >
+                        </div>
+                      </div>
+                      <div class="form-group">
 					    <label class="control-label col-sm-2" for="nota">Nota:</label>
 					    <div class="col-sm-9">
-					    	<input type="number" class="form-control" id="nota" placeholder="Nota" name="nota">
+					    	<input type="number" class="form-control" id="nota" placeholder="Nota" name="nota" required="true">
 					    </div>
 					  </div>
 					  <div class="form-group">
 					    <label class="control-label col-sm-2" for="feedback">Feedback:</label>
 					    <div class="col-sm-9"> 
-					      <input type="file" class="form-control" id="feedback" placeholder="Enviar o arquivo da monografia com os comentários" name="feedback">
+					      <input type="file" class="form-control" id="feedback" placeholder="Enviar o arquivo da monografia com os comentários" name="feedback" required="true">
 					    </div>
 					  </div>
 					  <div class="form-group">
 					    <label class="control-label col-sm-2" for="comentarios">Comentários:</label>
 					    <div class="col-sm-9">
-					      <textarea class="form-control" rows="5" id="comentarios" placeholder="Comentários adicionais sobre o trabalho" name="comentarios"></textarea>
+					      <textarea class="form-control" rows="5" id="comentarios" placeholder="Comentários adicionais sobre o trabalho" name="comentarios" required="true"></textarea>
 					    </div>
 					  </div>
 					  <div class="form-group">
 					    <div class="col-sm-offset-2 col-sm-9">
-					      <button type="submit" class="btn btn-default">Enviar Avaliação</button>
+					      <button type="submit" name="submit" class="btn btn-default">Enviar Avaliação</button>
 					    </div>
 					  </div>
 					</form>

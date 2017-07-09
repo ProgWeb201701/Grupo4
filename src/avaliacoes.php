@@ -54,21 +54,16 @@
 
 
                     <li>
-                        <a href="indexAluno.html"><i class="fa fa-desktop "></i>Inicio</a>
+                        <a href="indexProfessor.html"><i class="fa fa-desktop "></i>Inicio</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-edit "></i>Monografia<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="enviarMonografia.php">Enviar monografia</a>
-                            </li>
-                            <li>
-                                <a href="#">Visualizar feedback</a>
-                            </li>
-                            <li>
-                                <a href="#">Visualizar avaliações</a>
-                            </li>
-                        </ul>
+                        <a href="turmas.php"><i class="fa fa-users "></i>Turmas</a>
+            
+                    </li>
+
+
+                    <li>
+                        <a href="monografias.php"><i class="fa fa-edit"></i>Monografias</a>
                     </li>
                     
             </div>
@@ -123,7 +118,7 @@
                                                         ".$row["nota"]."
                                                     </td>
                                                     <td>
-                                                        <a href=''><i class='fa fa-download' aria-hidden='true'></i><span> Baixar</span></a>
+                                                        <a href='./uploads/".$row['caminhoFeedback']."' target='_blank'><i class='fa fa-download' aria-hidden='true'></i><span> Baixar</span></a>
                                                     </td>
                                                     <td class='text-center'>
                                                         ".$row["observacao"]."

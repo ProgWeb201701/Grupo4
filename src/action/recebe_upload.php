@@ -15,8 +15,6 @@ if (isset($_POST['submit']))
 		// Renomeia arquivo
 		$newfilename = md5($file_basename) . $file_ext;
 		
-			
-		
 		include_once '../connection/connection.php';
 
 		$conn = new Connection();
@@ -31,10 +29,11 @@ if (isset($_POST['submit']))
 
 			if($resultado){
 				move_uploaded_file($_FILES["file"]["tmp_name"], "../uploads/" . $newfilename);
-				echo "Arquivo enviado com sucesso.";
+				echo"<script language='javascript' type='text/javascript'>alert('Monografia enviada com sucesso');window.location.href='../indexAluno.php';</script>";
 			}
 		} else {
-			echo "Voce já enviou a versão final da sua monografia!";
+			// se a versão final da monografia ja foi enviada
+			echo"<script language='javascript' type='text/javascript'>alert('Voce já enviou a versão final da sua monografia!');window.location.href='../indexAluno.php';</script>";
 		}
 
 		
@@ -43,17 +42,17 @@ if (isset($_POST['submit']))
 	elseif (empty($file_basename))
 	{	
 		// erro na seleção de arquivo
-		echo "Por favor selecione um arquivo para enviar.";
+		echo"<script language='javascript' type='text/javascript'>alert('Por favor selecione um arquivo para enviar!');window.location.href='../enviarMonografia.php';</script>";
 	} 
 	elseif ($filesize > 200000000)
 	{	
 		// erro de tamanho de arquivo
-		echo "o arquivo que voce está tentando enviar é grande demais.";
+		echo"<script language='javascript' type='text/javascript'>alert('O arquivo que voce está tentando enviar é grande demais.');window.location.href='../enviarMonografia.php';</script>";
 	}
 	else
 	{
 		// erro de tipo de aquivo
-		echo "Apenas esses tipos de arquivos podem ser enviados: " . implode(', ',$allowed_file_types);
+		echo"<script language='javascript' type='text/javascript'>alert('Apenas esses tipos de arquivos podem ser enviados: " . implode(', ',$allowed_file_types)."');window.location.href='../enviarMonografia.php';</script>";
 		unlink($_FILES["file"]["tmp_name"]);
 	}
 }

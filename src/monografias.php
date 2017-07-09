@@ -120,10 +120,10 @@
                                                         TURMA
                                                     </td>
                                                     <td>
-                                                        <a href='./uploads/".$row['caminhoEntrega']."'><i class='fa fa-download' aria-hidden='true'></i><span> Baixar</span></a>
+                                                        <a href='./uploads/".$row['caminhoEntrega']."' target='_blank'><i class='fa fa-download' aria-hidden='true'></i><span> Baixar</span></a>
                                                     </td>
                                                     <td class='text-center'>
-                                                        <a href='avaliar.php?titulo=".$row["titulo"]."'><i class='fa fa-arrow-right' aria-hidden='true'></i><span> Avaliar</span></a>
+                                                        <a href='avaliar.php?titulo=".$row["titulo"]."&idMonografia=".$row['idMonografia']."'><i class='fa fa-arrow-right' aria-hidden='true'></i><span> Avaliar</span></a>
                                                     </td>
                                                 </tr>";
                                     } 
