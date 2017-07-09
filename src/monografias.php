@@ -27,7 +27,7 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Sair <i class="fa fa-sign-out "></i></a></li>
+                        <li><a href="./action/logout.php">Sair <i class="fa fa-sign-out "></i></a></li>
                     </ul>
                 </div>
 

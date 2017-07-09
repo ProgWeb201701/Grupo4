@@ -1,3 +1,16 @@
+<?php 
+    session_start();
+    if (!isset($_SESSION['sou'])) {
+        echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para acessar essa pagina');window.location.href='./login.html';</script>";
+    }
+    if($_SESSION['sou'] == 2){
+        echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para isso');window.location.href='./indexProfessor.php';</script>";
+    } 
+    if($_SESSION['sou'] == 1){
+        echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para isso');window.location.href='./indexAluno.php';</script>";
+    die();
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +40,7 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Sair <i class="fa fa-sign-out "></i></a></li>
+                        <li><a href="./action/logout.php">Sair <i class="fa fa-sign-out "></i></a></li>
                     </ul>
                 </div>
 

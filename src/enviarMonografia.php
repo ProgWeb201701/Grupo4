@@ -1,3 +1,15 @@
+<?php 
+    session_start();
+    if (!isset($_SESSION['sou'])) {
+        echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para acessar essa pagina');window.location.href='./login.html';</script>";
+    }
+    if($_SESSION['sou'] == 2){
+        echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para acessar essa pagina');window.location.href='./indexProfessor.php';</script>";
+    } 
+    if($_SESSION['sou'] == 3){
+        echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para acessar essa pagina');window.location.href='./indexCoordenador.php';</script>";
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +39,7 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Sair <i class="fa fa-sign-out "></i></a></li>
+                        <li><a href="./action/logout.php">Sair <i class="fa fa-sign-out "></i></a></li>
                     </ul>
                 </div>
 
@@ -88,7 +100,7 @@
                                 $conn = new Connection();
                                 $connection = $conn->getConnection();
 
-                                $sql = "SELECT titulo FROM monografia";
+                                $sql = "SELECT titulo FROM monografia WHERE aluno_matricula = '".$_SESSION['usuario']."'";
 
                                 $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
 
