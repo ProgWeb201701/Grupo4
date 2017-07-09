@@ -27,7 +27,7 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="./action/logout.php">Sair <i class="fa fa-sign-out "></i></a></li>
+                        <li><a href="./action/logout.php">Sair<i class="fa fa-sign-out "></i></a></li>
                     </ul>
                 </div>
 
@@ -44,7 +44,7 @@
 
 
                     <li>
-                        <a href="indexProfessor.html"><i class="fa fa-desktop "></i>Inicio</a>
+                        <a href="indexProfessor.php"><i class="fa fa-desktop "></i>Inicio</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-users "></i>Turmas</a>

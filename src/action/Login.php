@@ -13,14 +13,16 @@ $professor = mysqli_query($connection, "SELECT * FROM professor WHERE siape = '"
 $coordenador = mysqli_query($connection, "SELECT * FROM turma WHERE Professor_siape = '".$usuario."';") or die("erro ao selecionar");
 
 
-$linhaAluno = mysql_fetch_assoc($aluno);
-$nomeAluno = $linhaAluno['nome'];
+//$linhaAluno = mysql_fetch_assoc($aluno);
+//omeAluno = $linhaAluno['nome'];
 
 $linhaProfessor = mysql_fetch_assoc($professor);
 $nomeProfessor = $linhaProfessor['nome'];
+
+while($row = $aluno->fetch_assoc()) {
+  $nomeAluno = $row["nome"];
+}
   
-
-
 
 if (mysqli_num_rows($aluno)<=0 && mysqli_num_rows($professor)<=0){
   echo"<script language='javascript' type='text/javascript'>alert('Login e/ou senha incorretos');window.location.href='../login.html';</script>";

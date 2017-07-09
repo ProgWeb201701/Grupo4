@@ -58,7 +58,7 @@
 
 
                     <li>
-                        <a href="indexCoordenador.html"><i class="fa fa-desktop "></i>Inicio</a>
+                        <a href="indexCoordenador.php"><i class="fa fa-desktop "></i>Inicio</a>
                     </li>
                     <li>
                         <a href="turmas.php"><i class="fa fa-users "></i>Turmas</a>
@@ -91,195 +91,59 @@
                 </div>
                 
                 
-                <div class="row">
-                    <div class="col-md-6">
-                        <h5>Tabela exemplo 1</h5>
-                        <table class="table table-striped table-bordered table-hover">
+               <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-striped table-hover table-responsive">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>/th>
-                                    <th>Last Name</th>
-                                    <th>Username</th>
+                                    <th>
+                                        Turma
+                                    </th>
+                                    <th>
+                                        Nome do Aluno
+                                    </th>
+                                    <th>
+                                        Matricula
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
+                                <?php 
+                                    include_once './connection/connection.php';
+
+                                    $conn = new Connection();
+                                    $connection = $conn->getConnection();
+
+                                    $Turma = $_GET["nomeTurma"];
+
+                                    $sql = "SELECT `aluno`.`nome`, `turma_has_aluno`.`Turma_nomeTurma`, `turma_has_aluno`.`Aluno_matricula`
+                                            FROM `turma_has_aluno`
+                                                LEFT JOIN `aluno` ON `turma_has_aluno`.`Aluno_matricula` = `aluno`.`matricula`
+                                            WHERE (`turma_has_aluno`.`Turma_nomeTurma` = '".$Turma."');
+                                            ";
+
+                                    $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
+
+                                    while($row = $resultado->fetch_assoc()) {
+                                            echo "<tr>
+                                                    <td>
+                                                        ".$row["Turma_nomeTurma"]."
+                                                    </td>
+                                                    <td>
+                                                        ".$row["nome"]."
+                                                    </td>
+                                                    <td>
+                                                        ".$row["Aluno_matricula"]."
+                                                    </td>
+                                                </tr>";
+                                    } 
+                                ?>
                             </tbody>
                         </table>
-
-                    </div>
-                    <div class="col-md-6">
-                        <h5>Tabela exemplo 2</h5>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="success">
-                                        <td>1</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr class="info">
-                                        <td>2</td>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr class="warning">
-                                        <td>3</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr class="danger">
-                                        <td>4</td>
-                                        <td>John</td>
-                                        <td>Smith</td>
-                                        <td>@jsmith</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
                 </div>
-                <!-- /. ROW  -->
-                <hr />
-
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <h5>Painel exemplo</h5>
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                Default Panel
-                            </div>
-                            <div class="panel-body">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                            </div>
-                            <div class="panel-footer">
-                                Panel Footer
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <h5>Exemplo de Acordeon</h5>
-                        <div class="panel-group" id="accordion">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">Collapsible Group Item #1</a>
-                                    </h4>
-                                </div>
-                                <div id="collapseOne" class="panel-collapse collapse" style="height: 0px;">
-                                    <div class="panel-body">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Collapsible Group Item #2</a>
-                                    </h4>
-                                </div>
-                                <div id="collapseTwo" class="panel-collapse in" style="height: auto;">
-                                    <div class="panel-body">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed">Collapsible Group Item #3</a>
-                                    </h4>
-                                </div>
-                                <div id="collapseThree" class="panel-collapse collapse">
-                                  
-
-                                        <div class="panel-body">
-                                             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <h5>Exemplo de Abas</h5>
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a href="#home" data-toggle="tab">Home</a>
-                            </li>
-                            <li class=""><a href="#profile" data-toggle="tab">Profile</a>
-                            </li>
-                            <li class=""><a href="#messages" data-toggle="tab">Messages</a>
-                            </li>
-
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane fade active in" id="home">
-                                <h4>Home Tab</h4>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
-                                </p>
-                            </div>
-                            <div class="tab-pane fade" id="profile">
-                                <h4>Profile Tab</h4>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
-                                </p>
-
-                            </div>
-                            <div class="tab-pane fade" id="messages">
-                                <h4>Messages Tab</h4>
-                                <p >
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
-                                </p>
-
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
+              
+                
                 <!-- /. ROW  -->
                 <hr />
                   <div class="row">
