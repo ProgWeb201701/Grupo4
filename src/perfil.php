@@ -75,6 +75,10 @@
                             
                         </ul>
                     </li>
+                         <?php if($_SESSION['sou'] > 1){
+                     echo "<li><a href='areaInteresse.php'><i class='fa fa-user-circle ''></i>Áreas de Interesse</a></li>";
+                 }
+                    ?>
                     
             </div>
 

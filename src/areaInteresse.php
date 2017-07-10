@@ -92,6 +92,7 @@
                 </div>              
                  <!-- /. ROW  -->
                 <div class="row">
+                <form class="form-horizontal" action="./action/cadastra_interesse.php" method="post">
                     <div class="col-md-12">
                         <table class="table table-striped table-hover table-responsive">
                             <thead>
@@ -113,7 +114,7 @@
                                     $connection = $conn->getConnection();
 
 
-                                    $sql = "SELECT `area_interesse`.`nomeInteresse`
+                                    $sql = "SELECT *
                                             FROM `area_interesse`;";
 
                                     $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
@@ -124,7 +125,7 @@
                                                         ".$row["nomeInteresse"]."
                                                     </td>
                                                     <td>
-                                                        <input type='checkbox' name='select[]'/>
+                                                        <input type='checkbox' name='check_box[]' value='".$row["idInteresse"]."'/>
                                                     </td>
                                                     
                                                 </tr>";
@@ -145,8 +146,10 @@
 
                             </tbody>
                         </table>
+                        <
                     </div>
                 </div>
+                </form>
               
                  <!-- /. ROW  -->           
             </div>
