@@ -65,13 +65,6 @@
             
                     </li>
 
-
-                    <li>
-                        <a href="#"><i class="fa fa-edit "></i>Monografia<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="atribuirMonografia.php">Atribuir monografia</a>
-                            </li>
                             <li>
                                 <a href="#"><i class="fa fa-edit "></i>Monografia<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">

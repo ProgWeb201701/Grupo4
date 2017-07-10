@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.0.4.1
+-- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: 10-Jul-2017 às 03:31
--- Versão do servidor: 10.1.21-MariaDB
--- PHP Version: 7.1.1
+-- Máquina: localhost
+-- Data de Criação: 10-Jul-2017 às 00:05
+-- Versão do servidor: 5.5.28
+-- versão do PHP: 5.3.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,11 +14,13 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
--- Database: `tcc`
+-- Base de Dados: `tcc`
 --
+CREATE DATABASE IF NOT EXISTS `tcc` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `tcc`;
 
 -- --------------------------------------------------------
 
@@ -26,11 +28,12 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `aluno`
 --
 
-CREATE TABLE `aluno` (
+CREATE TABLE IF NOT EXISTS `aluno` (
   `matricula` varchar(50) NOT NULL,
   `nome` varchar(50) NOT NULL,
   `senha` varchar(45) NOT NULL,
-  `email` varchar(50) NOT NULL
+  `email` varchar(50) NOT NULL,
+  PRIMARY KEY (`matricula`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -45,16 +48,51 @@ INSERT INTO `aluno` (`matricula`, `nome`, `senha`, `email`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `area_interesse`
+--
+
+CREATE TABLE IF NOT EXISTS `area_interesse` (
+  `idInteresse` int(11) NOT NULL AUTO_INCREMENT,
+  `nomeInteresse` varchar(50) NOT NULL,
+  PRIMARY KEY (`idInteresse`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+
+--
+-- Extraindo dados da tabela `area_interesse`
+--
+
+INSERT INTO `area_interesse` (`idInteresse`, `nomeInteresse`) VALUES
+(1, 'Linguagens Formais e Autômatos'),
+(2, 'Análise de Algoritmos'),
+(3, 'Engenharia de Software'),
+(4, 'Otimização Combinatória'),
+(5, 'Teoria dos Grafos'),
+(6, 'Geometria Computacional'),
+(7, 'Segurança Computacional'),
+(8, 'Criptografia Computacional'),
+(9, 'Reconhecimento de Padrões'),
+(10, 'Redes de Computadores'),
+(11, 'Sistemas DistribuÍdos'),
+(12, 'Arquitetura de Computadores'),
+(13, 'Programação Paralela'),
+(14, 'Computação em Nuvem'),
+(15, 'Linguagens de Programação e Compiladores');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `avaliacao`
 --
 
-CREATE TABLE `avaliacao` (
-  `idAvaliacao` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `avaliacao` (
+  `idAvaliacao` int(11) NOT NULL AUTO_INCREMENT,
   `nota` float DEFAULT NULL,
   `caminhoFeedback` varchar(100) DEFAULT NULL,
   `observacao` varchar(100) DEFAULT NULL,
-  `professor_siape` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `professor_siape` varchar(20) NOT NULL,
+  PRIMARY KEY (`idAvaliacao`),
+  KEY `professor_siape` (`professor_siape`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -62,8 +100,8 @@ CREATE TABLE `avaliacao` (
 -- Estrutura da tabela `monografia`
 --
 
-CREATE TABLE `monografia` (
-  `idMonografia` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `monografia` (
+  `idMonografia` int(11) NOT NULL AUTO_INCREMENT,
   `versao` varchar(45) DEFAULT NULL,
   `titulo` varchar(100) NOT NULL,
   `caminhoEntrega` varchar(100) DEFAULT NULL,
@@ -71,8 +109,12 @@ CREATE TABLE `monografia` (
   `aluno_matricula` varchar(50) NOT NULL,
   `professor_orientador` varchar(20) NOT NULL,
   `Professor_Coorientador` varchar(20) NOT NULL,
-  `isFinal` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `isFinal` tinyint(1) NOT NULL,
+  PRIMARY KEY (`idMonografia`,`aluno_matricula`,`professor_orientador`,`Professor_Coorientador`),
+  KEY `fk_Monografia_Aluno1_idx` (`aluno_matricula`),
+  KEY `fk_Monografia_Professor1_idx` (`professor_orientador`),
+  KEY `fk_Monografia_Professor2_idx` (`Professor_Coorientador`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Extraindo dados da tabela `monografia`
@@ -89,11 +131,12 @@ INSERT INTO `monografia` (`idMonografia`, `versao`, `titulo`, `caminhoEntrega`, 
 -- Estrutura da tabela `professor`
 --
 
-CREATE TABLE `professor` (
+CREATE TABLE IF NOT EXISTS `professor` (
   `siape` varchar(20) NOT NULL,
   `nome` varchar(50) NOT NULL,
   `senha` varchar(45) NOT NULL,
-  `email` varchar(50) NOT NULL
+  `email` varchar(50) NOT NULL,
+  PRIMARY KEY (`siape`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -111,9 +154,11 @@ INSERT INTO `professor` (`siape`, `nome`, `senha`, `email`) VALUES
 -- Estrutura da tabela `prof_avalia_monografia`
 --
 
-CREATE TABLE `prof_avalia_monografia` (
+CREATE TABLE IF NOT EXISTS `prof_avalia_monografia` (
   `monografia_idMonografia` int(11) NOT NULL,
-  `professor_siape` varchar(20) NOT NULL
+  `professor_siape` varchar(20) NOT NULL,
+  PRIMARY KEY (`monografia_idMonografia`,`professor_siape`),
+  KEY `professor_siape` (`professor_siape`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -127,12 +172,27 @@ INSERT INTO `prof_avalia_monografia` (`monografia_idMonografia`, `professor_siap
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `prof_has_interesse`
+--
+
+CREATE TABLE IF NOT EXISTS `prof_has_interesse` (
+  `siape` varchar(20) DEFAULT NULL,
+  `idInteresse` int(11) DEFAULT NULL,
+  KEY `siape` (`siape`),
+  KEY `idInteresse` (`idInteresse`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `turma`
 --
 
-CREATE TABLE `turma` (
+CREATE TABLE IF NOT EXISTS `turma` (
   `nomeTurma` varchar(15) NOT NULL,
-  `Professor_siape` varchar(20) NOT NULL
+  `Professor_siape` varchar(20) NOT NULL,
+  PRIMARY KEY (`nomeTurma`),
+  KEY `fk_Turma_Professor1_idx` (`Professor_siape`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -149,9 +209,12 @@ INSERT INTO `turma` (`nomeTurma`, `Professor_siape`) VALUES
 -- Estrutura da tabela `turma_has_aluno`
 --
 
-CREATE TABLE `turma_has_aluno` (
+CREATE TABLE IF NOT EXISTS `turma_has_aluno` (
   `Turma_nomeTurma` varchar(15) NOT NULL,
-  `Aluno_matricula` varchar(50) NOT NULL
+  `Aluno_matricula` varchar(50) NOT NULL,
+  PRIMARY KEY (`Turma_nomeTurma`,`Aluno_matricula`),
+  KEY `fk_Turma_has_Aluno_Aluno1_idx` (`Aluno_matricula`),
+  KEY `fk_Turma_has_Aluno_Turma1_idx` (`Turma_nomeTurma`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -164,74 +227,6 @@ INSERT INTO `turma_has_aluno` (`Turma_nomeTurma`, `Aluno_matricula`) VALUES
 ('ES/TCC 1', '151151483');
 
 --
--- Indexes for dumped tables
---
-
---
--- Indexes for table `aluno`
---
-ALTER TABLE `aluno`
-  ADD PRIMARY KEY (`matricula`);
-
---
--- Indexes for table `avaliacao`
---
-ALTER TABLE `avaliacao`
-  ADD PRIMARY KEY (`idAvaliacao`),
-  ADD KEY `professor_siape` (`professor_siape`);
-
---
--- Indexes for table `monografia`
---
-ALTER TABLE `monografia`
-  ADD PRIMARY KEY (`idMonografia`,`aluno_matricula`,`professor_orientador`,`Professor_Coorientador`),
-  ADD KEY `fk_Monografia_Aluno1_idx` (`aluno_matricula`),
-  ADD KEY `fk_Monografia_Professor1_idx` (`professor_orientador`),
-  ADD KEY `fk_Monografia_Professor2_idx` (`Professor_Coorientador`);
-
---
--- Indexes for table `professor`
---
-ALTER TABLE `professor`
-  ADD PRIMARY KEY (`siape`);
-
---
--- Indexes for table `prof_avalia_monografia`
---
-ALTER TABLE `prof_avalia_monografia`
-  ADD PRIMARY KEY (`monografia_idMonografia`,`professor_siape`),
-  ADD KEY `professor_siape` (`professor_siape`);
-
---
--- Indexes for table `turma`
---
-ALTER TABLE `turma`
-  ADD PRIMARY KEY (`nomeTurma`),
-  ADD KEY `fk_Turma_Professor1_idx` (`Professor_siape`);
-
---
--- Indexes for table `turma_has_aluno`
---
-ALTER TABLE `turma_has_aluno`
-  ADD PRIMARY KEY (`Turma_nomeTurma`,`Aluno_matricula`),
-  ADD KEY `fk_Turma_has_Aluno_Aluno1_idx` (`Aluno_matricula`),
-  ADD KEY `fk_Turma_has_Aluno_Turma1_idx` (`Turma_nomeTurma`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `avaliacao`
---
-ALTER TABLE `avaliacao`
-  MODIFY `idAvaliacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `monografia`
---
-ALTER TABLE `monografia`
-  MODIFY `idMonografia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
 -- Constraints for dumped tables
 --
 
@@ -239,7 +234,7 @@ ALTER TABLE `monografia`
 -- Limitadores para a tabela `avaliacao`
 --
 ALTER TABLE `avaliacao`
-  ADD CONSTRAINT `avaliacao_ibfk_1` FOREIGN KEY (`professor_siape`) REFERENCES `prof_avalia_monografia` (`Professor_siape`),
+  ADD CONSTRAINT `avaliacao_ibfk_1` FOREIGN KEY (`professor_siape`) REFERENCES `prof_avalia_monografia` (`professor_siape`),
   ADD CONSTRAINT `avaliacao_ibfk_2` FOREIGN KEY (`professor_siape`) REFERENCES `prof_avalia_monografia` (`professor_siape`);
 
 --
@@ -257,6 +252,13 @@ ALTER TABLE `prof_avalia_monografia`
   ADD CONSTRAINT `prof_avalia_monografia_ibfk_1` FOREIGN KEY (`monografia_idMonografia`) REFERENCES `monografia` (`idMonografia`),
   ADD CONSTRAINT `prof_avalia_monografia_ibfk_2` FOREIGN KEY (`professor_siape`) REFERENCES `professor` (`siape`),
   ADD CONSTRAINT `prof_avalia_monografia_ibfk_3` FOREIGN KEY (`monografia_idMonografia`) REFERENCES `monografia` (`idMonografia`);
+
+--
+-- Limitadores para a tabela `prof_has_interesse`
+--
+ALTER TABLE `prof_has_interesse`
+  ADD CONSTRAINT `prof_has_interesse_ibfk_1` FOREIGN KEY (`siape`) REFERENCES `professor` (`siape`),
+  ADD CONSTRAINT `prof_has_interesse_ibfk_2` FOREIGN KEY (`idInteresse`) REFERENCES `area_interesse` (`idInteresse`);
 
 --
 -- Limitadores para a tabela `turma`
