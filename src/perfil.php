@@ -3,12 +3,6 @@
     if (!isset($_SESSION['sou'])) {
         echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para acessar essa pagina');window.location.href='./login.html';</script>";
     }
-    if($_SESSION['sou'] == 2){
-        echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para acessar essa pagina');window.location.href='./indexProfessor.php';</script>";
-    } 
-    if($_SESSION['sou'] == 3){
-        echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para acessar essa pagina');window.location.href='./indexCoordenador.php';</script>";
-    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -58,20 +52,27 @@
 
 
                     <li>
-                        <a href="indexAluno.php"><i class="fa fa-desktop "></i>Inicio</a>
+                        <a href="indexProfessor.php"><i class="fa fa-desktop "></i>Inicio</a>
                     </li>
+                    <li>
+                        <a href="turmas.php"><i class="fa fa-users "></i>Turmas</a>
+                    </li>
+
+
                     <li>
                         <a href="#"><i class="fa fa-edit "></i>Monografia<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li>
-                                <a href="#">Enviar monografia</a>
-                            </li>
-                            <li>
-                                <a href="#">Visualizar feedback</a>
-                            </li>
-                            <li>
-                                <a href="avaliacoesAluno.php">Visualizar avaliações</a>
-                            </li>
+                            
+                            <?php if($_SESSION['sou'] == 3){
+                                echo "<li><a href='atribuirMonografia.php'>Atribuir monografia</a></li>";} 
+                                if($_SESSION['sou']>1){
+                                    echo "<li><a href='avaliacoes.php'>Avaliações</a></li><li><a href='monografias.php'>Monografias</a></li>";
+                                }
+                                if($_SESSION['sou']==1){
+                                    echo "<li><a href='enviarMonografia.php'>Enviar monografia</a></li><li><a href='avaliacoesAluno.php'>Visualizar avaliações</a></li>";
+                                }
+                            ?>
+                            
                         </ul>
                     </li>
                     
@@ -83,16 +84,29 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Envie sua Monografia</h2>
-                        <hr>
+                         <h2>Perfil de: <?php 
+                                include_once './connection/connection.php';
+
+                                $conn = new Connection();
+                                $connection = $conn->getConnection();
+
+                                $sql = "SELECT nome FROM professor WHERE siape = '".$_SESSION['usuario']."'";
+
+                                $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
+
+                                $row = $resultado->fetch_assoc();
+                                        echo $row['nome'];
+                            ?></h2>
+                            <hr>
                     </div>
                 </div>
                 
+                
                 <div class="row">
-                    <form class="form-horizontal" method="post" action="action/recebe_upload.php" enctype="multipart/form-data">
+                        <form class="form-horizontal" method="post" action="action/atualiza_perfil.php">
 
                         <div class="form-group">
-                        <label class="control-label col-sm-2" for="titulo">Título:</label>
+                        <label class="control-label col-sm-2" for="titulo">Nome:</label>
                         <div class="col-sm-8">
                           
                           <?php 
@@ -100,52 +114,56 @@
 
                                 $conn = new Connection();
                                 $connection = $conn->getConnection();
+                                $sql;
 
-                                $sql = "SELECT titulo FROM monografia WHERE aluno_matricula = '".$_SESSION['usuario']."'";
+                                if($_SESSION['sou']>1){
+                                    $sql = "SELECT * FROM professor WHERE siape = '".$_SESSION['usuario']."'";
+                                } else {
+                                    $sql = "SELECT * FROM aluno WHERE matricula = '".$_SESSION['usuario']."'";
+                                }                                
 
                                 $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
 
                                 $row = $resultado->fetch_assoc();
-                                        echo "<input type='text' class='form-control' id='titulo' name='titulo' placeholder='".$row['titulo']."' disabled='true'>";
+                                        echo "<input type='text' class='form-control' id='nome' name='nome' value='".$row['nome']."'>";
+                                        echo "</div></div><div class='form-group'>
+                        <label class='control-label col-sm-2' for='usuario'>";
+                        if($_SESSION['sou']>1){
+                                    echo "Siape:";
+                                } else {
+                                    echo "Matricula:";
+                                }
+                                echo "</label><div class='col-sm-8'><input type='text' class='form-control' id='usuaro' name='usuario' value='";
+                        if($_SESSION['sou']>1){
+                            echo $row['siape'];
+                        } else {
+                            echo $row['matricula'];
+                        }
+                        echo "' required='true'></div></div><div class='form-group'>
+                        <label class='control-label col-sm-2' for='senha'>Senha:</label>
+                        <div class='col-sm-8'>
+                          <input type='password' class='form-control' id='senha' name='senha' value='".$row['senha']."' required='true'>
+                        </div>
+                      </div>";
+                            echo "<div class='form-group'>
+                        <label class='control-label col-sm-2' for='email'>E-Mail:</label>
+                        <div class='col-sm-8'>
+                          <input type='email' class='form-control' id='email' name='email' required='true' value='".$row['email']."'>
+                        </div>
+                      </div>";
+
                             ?>
-                        </div>
-                      </div>
-
-                       <div class="form-group">
-                        <label class="control-label col-sm-2" for="versao">Versão:</label>
-                        <div class="col-sm-8">
-                          <input type="text" class="form-control" id="versao" name="versao" placeholder="Informe Versão da Monografia" required="true">
-                        </div>
-                       </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-sm-2" for="abstract">Abstract:</label>
-                        <div class="col-sm-8">
-                          <textarea class="form-control" rows="10" id="abstract" name="abstract" placeholder="Insira o Abstract" required="true"></textarea>
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-sm-2" for="file">Arquivo:</label>
-                        <div class="col-sm-8">
-                          <input type="file" class="form-control" id="file" name='file' required="true">
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-8">
-                          <label class="checkbox-inline "><input type="checkbox" value="true" id="final" name="final">Esta é a versão final do meu trabalho.</label>
-                        </div>
-                      </div>
                 
                       <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-8">
-                          <button type="submit" id="submit" name="submit" class="btn btn-default" value="Enviar">Enviar</button>
+                          <button type="submit" id="submit" name="submit" class="btn btn-default" value="Enviar">Salvar Mudanças</button>
                         </div>
                       </div>
                     </form>
-
                 </div>
+                
+                <!-- /. ROW  -->
+        
 
             </div>
             <!-- /. PAGE INNER  -->

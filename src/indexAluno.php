@@ -39,6 +39,7 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
+                        <li><a href="./perfil.php">Meu Perfil <i class="fa fa-user-circle "></i></a></li>
                         <li><a href="./action/logout.php">Sair <i class="fa fa-sign-out "></i></a></li>
                     </ul>
                 </div>
@@ -61,9 +62,6 @@
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="enviarMonografia.php">Enviar monografia</a>
-                            </li>
-                            <li>
-                                <a href="#">Visualizar feedback</a>
                             </li>
                             <li>
                                 <a href="avaliacoesAluno.php">Visualizar avaliações</a>
