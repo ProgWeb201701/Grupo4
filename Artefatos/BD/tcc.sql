@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 10-Jul-2017 às 10:54
+-- Data de Criação: 10-Jul-2017 às 11:29
 -- Versão do servidor: 5.5.28
 -- versão do PHP: 5.3.19
 
@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `monografia` (
 
 INSERT INTO `monografia` (`idMonografia`, `versao`, `titulo`, `caminhoEntrega`, `abstract`, `aluno_matricula`, `professor_orientador`, `Professor_Coorientador`, `isFinal`) VALUES
 (1, '1', 'Estudo das lontras da Noruega e seus comportamentos', 'ccbdafd99af01cea28068358eaf36389.pdf', 'sdsdddsssssssssssssssssssssss', '141150442', '123', '123', 0),
-(2, '2', 'Desenvolvimento de Gerador de Geradores usando um Gerador de Gerador de Geradores.', 'md5 vai aqui', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '151151483', '123456789', '987654321', 0),
+(2, '2', 'Desenvolvimento de Gerador de Geradores usando um Gerador de Gerador de Geradores.', '0d4f05d2ff2ef9a07d4f1a3dbd9cf33b.pdf', 'O uso de geradores de codigo e artefatos prontos para um melhor aproveitamento de tempo de jogo', '151151483', '123456789', '987654321', 1),
 (5, NULL, 'TCC XOIA MANO MUTO LOCO DEMAIS BEM LOCO NE', NULL, NULL, '141150222', '123', '123456789', 0);
 
 -- --------------------------------------------------------
@@ -173,7 +173,11 @@ CREATE TABLE IF NOT EXISTS `prof_avalia_monografia` (
 --
 
 INSERT INTO `prof_avalia_monografia` (`monografia_idMonografia`, `professor_siape`) VALUES
+(2, '101010'),
+(1, '11111'),
+(1, '123'),
 (5, '123456789'),
+(2, '987654321'),
 (5, '987654321');
 
 -- --------------------------------------------------------
@@ -241,7 +245,6 @@ CREATE TABLE IF NOT EXISTS `turma_has_aluno` (
 
 INSERT INTO `turma_has_aluno` (`Turma_nomeTurma`, `Aluno_matricula`) VALUES
 ('CC/TCC 1', '141150222'),
-('ES/TCC 1', '141150222'),
 ('ES/TCC 1', '141150442'),
 ('ES/TCC 1', '151151483');
 
