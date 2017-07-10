@@ -112,25 +112,32 @@
 
                                     $conn = new Connection();
                                     $connection = $conn->getConnection();
-
+                                    $nomes = array();
 
                                     $sql = "SELECT `prof_has_interesse`.`siape`, `area_interesse`.*
 											FROM `area_interesse`
 											LEFT JOIN `prof_has_interesse` ON `prof_has_interesse`.`idInteresse` = `area_interesse`.`idInteresse`;";
                                     $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
 
-                                    while($row = $resultado->fetch_assoc()) {  
-                                        echo "<tr>
+                                    while($row = $resultado->fetch_assoc()) {
+                                    	$nomeInteresse = $row['nomeInteresse'];
+                                    	if (in_array($nomeInteresse, $nomes)) {
+                                    		//não faz nada
+                                    	} else {
+                                    		$nomes[] = $nomeInteresse;
+                                    		echo "<tr>
                                                 <td>
                                                     ".$row["nomeInteresse"]."
                                                 </td>
                                                 <td>
                                                     <input type='checkbox' name='check_box[]' value='".$row["idInteresse"]."' ";
-                                        if ($row['siape']==$_SESSION['usuario']) {
-                                        	echo "checked";
-                                        }
-                                        echo "/></td></tr>";
-                                   } 
+	                                        if ($row['siape']==$_SESSION['usuario']) {
+	                                        	echo "checked";
+	                                        }
+	                                        echo "/></td></tr>";
+                                    	}
+                                        
+                                   }
                                 ?>
                                 <tr>
                                 <td>
