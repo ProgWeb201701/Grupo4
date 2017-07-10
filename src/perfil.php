@@ -89,8 +89,14 @@
 
                                 $conn = new Connection();
                                 $connection = $conn->getConnection();
+                                $sql;
 
-                                $sql = "SELECT nome FROM professor WHERE siape = '".$_SESSION['usuario']."'";
+                                if($_SESSION['sou']>1){
+                                    $sql = "SELECT nome FROM professor WHERE siape = '".$_SESSION['usuario']."'";
+                                }
+                                if($_SESSION['sou']==1){
+                                	$sql = "SELECT nome FROM aluno WHERE matricula = '".$_SESSION['usuario']."'";
+                                }
 
                                 $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
 
