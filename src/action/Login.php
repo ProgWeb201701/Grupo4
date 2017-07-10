@@ -18,18 +18,15 @@ if (mysqli_num_rows($aluno)<=0 && mysqli_num_rows($professor)<=0){
   die();
 }else{
   if (mysqli_num_rows($aluno)>0) {
-      session_start();
       $_SESSION['sou'] = 1;
       $_SESSION['usuario'] = $usuario;
     echo "<script language='javascript' type='text/javascript'>window.location.href='../indexAluno.php';</script>";
   } else if (mysqli_num_rows($professor)>0){
     if(mysqli_num_rows($coordenador)>0){
-      session_start();
       $_SESSION['sou'] = 3;
       $_SESSION['usuario'] = $usuario;
       echo "<script language='javascript' type='text/javascript'>window.location.href='../indexCoordenador.php';</script>";
     } else {
-      session_start();
           $_SESSION['sou'] = 2;
       $_SESSION['usuario'] = $usuario;
       echo "<script language='javascript' type='text/javascript'>window.location.href='../indexProfessor.php';</script>";
