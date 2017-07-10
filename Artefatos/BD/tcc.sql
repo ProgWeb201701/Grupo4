@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 10-Jul-2017 às 08:19
+-- Data de Criação: 10-Jul-2017 às 10:54
 -- Versão do servidor: 5.5.28
 -- versão do PHP: 5.3.19
 
@@ -41,9 +41,14 @@ CREATE TABLE IF NOT EXISTS `aluno` (
 --
 
 INSERT INTO `aluno` (`matricula`, `nome`, `senha`, `email`) VALUES
+('101001010', 'Gustavo Girardon', '123', 'gutinhoso@gmail.com'),
+('1115151515', 'Josefino Andrade', '11111', 'jose@fino.com'),
 ('141150222', 'Allan Pedroso', '123', 'allandinbr@hotmail.com'),
 ('141150442', 'Victor Costa', '12345', 'victorsc_rs@gmail.com'),
-('151151483', 'Rodrigo Machado', '54321', 'rodrigo.blizzard92@gmail.com');
+('151150450', 'Cabrito', 'xexe', 'confia@call.com'),
+('151151483', 'Rodrigo Machado', '54321', 'rodrigo.blizzard92@gmail.com'),
+('1818', 'Piupiu Macabro dos Santos', '123', 'piupiu@p.com'),
+('99999', 'Hyuuga Neji', '99999', 'neji@hyuuga.com');
 
 -- --------------------------------------------------------
 
@@ -144,8 +149,10 @@ CREATE TABLE IF NOT EXISTS `professor` (
 --
 
 INSERT INTO `professor` (`siape`, `nome`, `senha`, `email`) VALUES
+('101010', 'Gilleanes Guedes', '12345', 'gigi@leanes.com.br'),
+('11111', 'Andrea Bordin', '12345', 'deia@gmail.com'),
 ('123', 'Bernardino', '12345', 'bernardino@gmail.com'),
-('123456789', 'João Pablo', '123', 'lalal@lalal.com'),
+('123456789', 'Joao Pablo', '123', 'lalal@lalal.com'),
 ('987654321', 'Elder', '123', 'leoric@unipampa.com');
 
 -- --------------------------------------------------------
@@ -190,7 +197,8 @@ INSERT INTO `prof_has_interesse` (`siape`, `idInteresse`) VALUES
 ('987654321', 7),
 ('123', 1),
 ('123', 11),
-('123', 13);
+('123', 13),
+('123', 14);
 
 -- --------------------------------------------------------
 
@@ -233,6 +241,7 @@ CREATE TABLE IF NOT EXISTS `turma_has_aluno` (
 
 INSERT INTO `turma_has_aluno` (`Turma_nomeTurma`, `Aluno_matricula`) VALUES
 ('CC/TCC 1', '141150222'),
+('ES/TCC 1', '141150222'),
 ('ES/TCC 1', '141150442'),
 ('ES/TCC 1', '151151483');
 
