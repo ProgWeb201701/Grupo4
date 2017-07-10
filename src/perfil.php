@@ -52,10 +52,18 @@
 
 
                     <li>
-                        <a href="indexProfessor.php"><i class="fa fa-desktop "></i>Inicio</a>
+                    <?php if($_SESSION['sou'] == 3){
+                                echo "<a href='indexCoordenador.php'><i class='fa fa-desktop'></i>Inicio</a>";} 
+                                if($_SESSION['sou']==2){
+                                    echo "<a href='indexProfessor.php'><i class='fa fa-desktop'></i>Inicio</a>";} 
+                                if($_SESSION['sou']==1){
+                                     echo "<a href='indexAluno.php'><i class='fa fa-desktop'></i>Inicio</a>";} 
+                            ?>
                     </li>
                     <li>
-                        <a href="turmas.php"><i class="fa fa-users "></i>Turmas</a>
+                    <?php if($_SESSION['sou'] > 1){
+                        echo "<a href='turmas.php'><i class='fa fa-users'></i>Turmas</a>";}
+                        ?>
                     </li>
 
 

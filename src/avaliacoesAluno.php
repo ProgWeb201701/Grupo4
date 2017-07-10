@@ -60,9 +60,7 @@
                             <li>
                                 <a href="enviarMonografia.php">Enviar monografia</a>
                             </li>
-                            <li>
-                                <a href="#">Visualizar feedback</a>
-                            </li>
+                            
                             <li>
                                 <a href="#">Visualizar avaliações</a>
                             </li>
