@@ -112,7 +112,7 @@
                                     $row = $resultadoIdMonografia->fetch_assoc();
                                     $idMonografia = $row['idMonografia'];
 
-                                    $sql = "SELECT * FROM avaliacao INNER JOIN prof_avalia_monografia ON idAvaliacao = Avaliacao_idAvaliacao INNER JOIN professor ON siape = Professor_siape WHERE Monografia_idMonografia = '".$idMonografia."';";
+                                    $sql = "SELECT * FROM avaliacao INNER JOIN professor ON siape = professor_siape INNER JOIN prof_avalia_monografia ON prof_avalia_monografia.professor_siape = avaliacao.professor_siape WHERE Monografia_idMonografia = '".$idMonografia."';";
 
                                     $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
 
