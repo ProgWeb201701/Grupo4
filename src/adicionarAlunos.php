@@ -111,19 +111,21 @@
                 
                 
                <div class="row">
+                <form class="form-horizontal" action="./action/adicionaAluno.php" method="post">
                     <div class="col-md-12">
-                        <h3>Seus Alunos:</h3>
+                        <h3>Alunos cadastrados:</h3>
                         <table class="table table-striped table-hover table-responsive">
                             <thead>
                                 <tr>
-                                    <th>
-                                        Turma
-                                    </th>
+                                 
                                     <th>
                                         Nome do Aluno
                                     </th>
                                     <th>
                                         Matricula
+                                    </th>
+                                    <th>
+                                        Adicionar
                                     </th>
                                 </tr>
                             </thead>
@@ -139,37 +141,33 @@
                                     $row = $resultado->fetch_assoc();
                                     $Turma = $row['nomeTurma'];
 
-                                    $sql = "SELECT `aluno`.`nome`, `turma_has_aluno`.`Turma_nomeTurma`, `turma_has_aluno`.`Aluno_matricula`
-                                            FROM `turma_has_aluno`
-                                                LEFT JOIN `aluno` ON `turma_has_aluno`.`Aluno_matricula` = `aluno`.`matricula`
-                                            WHERE (`turma_has_aluno`.`Turma_nomeTurma` = '".$Turma."');
-                                            ";
+                                    $sql = "SELECT * FROM `aluno`;";
 
                                     $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
 
                                     while($row = $resultado->fetch_assoc()) {
                                             echo "<tr>
-                                                    <td>
-                                                        ".$row["Turma_nomeTurma"]."
-                                                    </td>
+                                                    
                                                     <td>
                                                         ".$row["nome"]."
                                                     </td>
                                                     <td>
-                                                        ".$row["Aluno_matricula"]."
+                                                        ".$row["matricula"]."
+                                                    </td>
+                                                    <td>
+                                                    <input type='checkbox' name='check_box[]' value='".$row["matricula"]."'/>
                                                     </td>
                                                 </tr>";
                                     } 
                                 ?>
-                            </tbody>
-                            <td>
-                                        <button type="submit" name="submit" class="btn btn-default"><a href="adicionarAlunos.php">Adicionar alunos</button>
+                                <td>
+                                        <button type="submit" name="submit" class="btn btn-default">Adicionar alunos à sua turma</button>
                                         </td>
                                                     
                                         </tr>
                           
                                  </td>
-                        
+                            </tbody>     
                       </div>
                         </table>
                     </div>
