@@ -124,7 +124,7 @@
                                     $conn = new Connection();
                                     $connection = $conn->getConnection();
 
-                                    $sql = "SELECT * FROM monografia INNER JOIN aluno ON matricula = aluno_matricula;";
+                                    $sql = "SELECT * FROM monografia INNER JOIN aluno ON matricula = aluno_matricula WHERE isFinal = '1';";
 
                                     $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
 
