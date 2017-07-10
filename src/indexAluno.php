@@ -52,10 +52,7 @@
                 <ul class="nav" id="main-menu">
                     <li class="text-center user-image-back">
                         <img src="assets/img/find_user.png" class="img-responsive user-image" />
-            
                     </li>
-
-
                     <li>
                         <a href="indexAluno.php"><i class="fa fa-desktop "></i>Inicio</a>
                     </li>
@@ -73,7 +70,7 @@
                             </li>
                         </ul>
                     </li>
-                    
+                </ul>
             </div>
 
         </nav>

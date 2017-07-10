@@ -77,7 +77,7 @@
                             </li>
                         </ul>
                     </li>
-                    
+                </ul>
             </div>
 
         </nav>
@@ -106,6 +106,7 @@
                 
                <div class="row">
                     <div class="col-md-12">
+                        <h3>Seus Alunos:</h3>
                         <table class="table table-striped table-hover table-responsive">
                             <thead>
                                 <tr>
@@ -127,7 +128,10 @@
                                     $conn = new Connection();
                                     $connection = $conn->getConnection();
 
-                                    $Turma = $_GET["nomeTurma"];
+                                    $sql = "SELECT nomeTurma FROM turma WHERE Professor_siape = '".$_SESSION['usuario']."'";
+                                    $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
+                                    $row = $resultado->fetch_assoc();
+                                    $Turma = $row['nomeTurma'];
 
                                     $sql = "SELECT `aluno`.`nome`, `turma_has_aluno`.`Turma_nomeTurma`, `turma_has_aluno`.`Aluno_matricula`
                                             FROM `turma_has_aluno`
@@ -155,18 +159,6 @@
                         </table>
                     </div>
                 </div>
-              
-                
-                <!-- /. ROW  -->
-                <hr />
-                  <div class="row">
-                    <div class="col-md-12">
-                        <h5>Informações</h5>
-                            <p>Texto de exemplo de footer</p>
-
-                    </div>
-                </div>
-                <!-- /. ROW  -->
 
             </div>
             <!-- /. PAGE INNER  -->

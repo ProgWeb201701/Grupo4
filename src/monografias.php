@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿<?php session_start();
+    if (!isset($_SESSION['sou'])) {
+        echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para acessar essa pagina');window.location.href='./login.html';</script>";
+    }
+    if($_SESSION['sou'] == 1){
+        echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para acessar essa pagina');window.location.href='./indexAluno.php';</script>";
+    }
+
+    ?>
+<!DOCTYPE html>
 <html>
 <head>
       <meta charset="utf-8" />
@@ -44,7 +53,8 @@
 
 
                     <li>
-                        <a href="indexProfessor.html"><i class="fa fa-desktop "></i>Inicio</a>
+                        <a href=<?php if($_SESSION['sou'] == 2){
+                                        echo "'indexProfessor.php'";} else {echo "'indexCoordenador.php'";} ?>><i class="fa fa-desktop "></i>Inicio</a>
                     </li>
                     <li>
                         <a href="turmas.php"><i class="fa fa-users "></i>Turmas</a>
@@ -53,8 +63,17 @@
 
 
                     <li>
-                        <a href="monografias.php"><i class="fa fa-edit"></i>Monografias</a>
+                        <a href="#"><i class="fa fa-edit "></i>Monografia<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            
+                            <?php if($_SESSION['sou'] == 3){
+                                    echo "<li><a href='atribuirMonografia.php'>Atribuir monografia</a></li>";} ?>
+                            <li>
+                                <a href="monografias.php">Monografias</a>
+                            </li>
+                        </ul>
                     </li>
+                </ul>
                     
             </div>
 
@@ -101,7 +120,7 @@
                                     $conn = new Connection();
                                     $connection = $conn->getConnection();
 
-                                    $sql = "SELECT * FROM monografia INNER JOIN aluno ON matricula = aluno_matricula;";
+                                    $sql = "SELECT * FROM monografia INNER JOIN aluno ON aluno.matricula = monografia.aluno_matricula LEFT JOIN turma_has_aluno ON aluno.matricula = turma_has_aluno.aluno_matricula;";
 
                                     $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
 
@@ -117,7 +136,7 @@
                                                         ".$row["nome"]."
                                                     </td>
                                                     <td>
-                                                        TURMA
+                                                        ".$row["Turma_nomeTurma"]."
                                                     </td>
                                                     <td>
                                                         <a href='./uploads/".$row['caminhoEntrega']."' target='_blank'><i class='fa fa-download' aria-hidden='true'></i><span> Baixar</span></a>

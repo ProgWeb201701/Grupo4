@@ -1,4 +1,25 @@
-﻿<!DOCTYPE html>
+﻿<?php 
+    session_start();
+    if (!isset($_SESSION['sou'])) {
+        echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para acessar essa pagina');window.location.href='./login.html';</script>";
+    }
+    if($_SESSION['sou'] == 1){
+        echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para isso');window.location.href='./indexAluno.php';</script>";
+    }
+
+    include_once './connection/connection.php';
+
+    $conn = new Connection();
+    $connection = $conn->getConnection();
+    $sql = "SELECT * FROM `prof_avalia_monografia` WHERE `monografia_idMonografia` = ".$_GET['idMonografia']." AND `professor_siape` = '".$_SESSION['usuario']."'";
+    $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
+    $count = $resultado->num_rows;
+    if($count == 0){
+        echo "<script language='javascript' type='text/javascript'>alert('Não tem permissão para avaliar essa monografia!');window.location.href='./monografias.php';</script>";
+    }
+
+?>
+<!DOCTYPE html>
 <html>
 <head>
       <meta charset="utf-8" />
@@ -53,7 +74,15 @@
 
 
                     <li>
-                        <a href="monografias.php"><i class="fa fa-edit"></i>Monografias</a>
+                        <a href="#"><i class="fa fa-edit "></i>Monografia<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            
+                            <?php if($_SESSION['sou'] == 3){
+                                    echo "<li><a href='atribuirMonografia.php'>Atribuir monografia</a></li>";} ?>
+                            <li>
+                                <a href="monografias.php">Monografias</a>
+                            </li>
+                        </ul>
                     </li>
                     
             </div>
@@ -78,7 +107,7 @@
 					  <div class="form-group">
                         <label class="control-label col-sm-2" for="idMonografia">ID da Monografia:</label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control" id="idMonografia" name="idMonografia" value=<?php echo "'".$_GET['idMonografia']."'"; ?> >
+                            <input type="number" class="form-control" id="idMonografia" name="idMonografia" readonly="true" value=<?php echo "'".$_GET['idMonografia']."'"; ?> >
                         </div>
                       </div>
                       <div class="form-group">

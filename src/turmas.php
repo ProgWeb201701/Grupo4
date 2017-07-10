@@ -1,7 +1,16 @@
+<?php 
+    session_start();
+    if (!isset($_SESSION['sou'])) {
+        echo "<script language='javascript' type='text/javascript'>window.location.href='./login.html';</script>";
+    }
+    if($_SESSION['sou'] == 1){
+        echo "<script language='javascript' type='text/javascript'>window.location.href='./indexAluno.php';</script>";
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
-      <meta charset="utf-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TCCs</title>
 	<!-- BOOTSTRAP STYLES-->
@@ -44,16 +53,23 @@
 
 
                     <li>
-                        <a href="indexProfessor.php"><i class="fa fa-desktop "></i>Inicio</a>
+                        <a href=<?php if($_SESSION['sou'] == 2){
+        echo "'indexProfessor.php'";} else {echo "'indexCoordenador.php'";} ?>><i class="fa fa-desktop "></i>Inicio</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-users "></i>Turmas</a>
-            
                     </li>
 
-
                     <li>
-                        <a href="monografias.php"><i class="fa fa-edit"></i>Monografias</a>
+                        <a href="#"><i class="fa fa-edit "></i>Monografia<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            
+                            <?php if($_SESSION['sou'] == 3){
+                                    echo "<li><a href='atribuirMonografia.php'>Atribuir monografia</a></li>";} ?>
+                            <li>
+                                <a href="monografias.php">Monografias</a>
+                            </li>
+                        </ul>
                     </li>
                     
             </div>

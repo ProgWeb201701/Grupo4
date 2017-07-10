@@ -57,7 +57,7 @@
 
 
                     <li>
-                        <a href="indexAluno.html"><i class="fa fa-desktop "></i>Inicio</a>
+                        <a href="indexAluno.php"><i class="fa fa-desktop "></i>Inicio</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-edit "></i>Monografia<span class="fa arrow"></span></a>
@@ -69,7 +69,7 @@
                                 <a href="#">Visualizar feedback</a>
                             </li>
                             <li>
-                                <a href="avaliacoes.php">Visualizar avaliações</a>
+                                <a href="avaliacoesAluno.php">Visualizar avaliações</a>
                             </li>
                         </ul>
                     </li>

@@ -58,7 +58,7 @@
 
 
                     <li>
-                        <a href="indexCoordenador.html"><i class="fa fa-desktop "></i>Inicio</a>
+                        <a href="indexCoordenador.php"><i class="fa fa-desktop "></i>Inicio</a>
                     </li>
                     <li>
                         <a href="turmas.php"><i class="fa fa-users "></i>Turmas</a>
@@ -91,7 +91,7 @@
                 </div>
                 
                 <div class="row">
-                    <form class="form-horizontal" action="./cadastra/monografia.php" method="post">
+                    <form class="form-horizontal" action="./action/monografia.php" method="post">
 
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="titulo">Título:</label>
@@ -150,6 +150,52 @@
                           <label class="control-label col-sm-2" for="orientador">Coorientador:</label>
                           <div class="col-sm-8">
                               <select class="form-control" id="coorientador" name="coorientador">
+                                
+                                <?php 
+                                    include_once './connection/connection.php';
+
+                                    $conn = new Connection();
+                                    $connection = $conn->getConnection();
+
+                                    $sql = "SELECT * FROM professor";
+
+                                    $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
+
+                                    while($row = $resultado->fetch_assoc()) {
+                                            echo "<option value='".$row['siape']."'>".$row['nome']."</option>";
+                                    }
+                                ?>
+                              </select>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="avaliador1">Avaliador 1:</label>
+                          <div class="col-sm-8">
+                              <select class="form-control" id="avaliador1" name="avaliador1">
+                                
+                                <?php 
+                                    include_once './connection/connection.php';
+
+                                    $conn = new Connection();
+                                    $connection = $conn->getConnection();
+
+                                    $sql = "SELECT * FROM professor";
+
+                                    $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
+
+                                    while($row = $resultado->fetch_assoc()) {
+                                            echo "<option value='".$row['siape']."'>".$row['nome']."</option>";
+                                    }
+                                ?>
+                              </select>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="avaliador2">Avaliador 2:</label>
+                          <div class="col-sm-8">
+                              <select class="form-control" id="avaliador2" name="avaliador2">
                                 
                                 <?php 
                                     include_once './connection/connection.php';
