@@ -120,18 +120,17 @@
                                     $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
 
                                     while($row = $resultado->fetch_assoc()) {
-                                    	$nomeInteresse = $row['nomeInteresse'];
-                                    	if (in_array($nomeInteresse, $nomes)) {
-                                    		//não faz nada
+                                    	$idInteresse = $row['idInteresse'];
+                                    	if (in_array($idInteresse, $nomes)) {
+
                                     	} else {
-                                    		$nomes[] = $nomeInteresse;
-                                    		echo "<tr>
-                                                <td>
-                                                    ".$row["nomeInteresse"]."
-                                                </td>
-                                                <td>
-                                                    <input type='checkbox' name='check_box[]' value='".$row["idInteresse"]."' ";
-	                                        if ($row['siape']==$_SESSION['usuario']) {
+                                    		$nomes[] = $idInteresse;
+                                    		echo "<tr><td>".$row["nomeInteresse"]."</td><td><input type='checkbox' name='check_box[]' value='".$row["idInteresse"]."' ";
+
+                                    		$sql2 = "SELECT * FROM prof_has_interesse WHERE siape = '".$_SESSION['usuario']."' AND idInteresse = '".$idInteresse."';";
+                                    		$resultado2 = mysqli_query($connection, $sql2) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
+                                    		$count = mysqli_num_rows($resultado2);
+	                                        if ($count>0) {
 	                                        	echo "checked";
 	                                        }
 	                                        echo "/></td></tr>";
