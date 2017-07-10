@@ -112,7 +112,7 @@
                 
                <div class="row">
                     <div class="col-md-12">
-                        <h3>Seus Alunos:</h3>
+                        <h3>Sua Turma:</h3>
                         <table class="table table-striped table-hover table-responsive">
                             <thead>
                                 <tr>
@@ -162,16 +162,13 @@
                                     } 
                                 ?>
                             </tbody>
-                            <td>
-                                        <button type="submit" name="submit" class="btn btn-default"><a href="adicionarAlunos.php">Adicionar alunos</button>
-                                        </td>
-                                                    
-                                        </tr>
-                          
-                                 </td>
+                            
+                                        
+                                        
                         
                       </div>
                         </table>
+                        <button class="btn btn-default"><a href="editarTurma.php">Editar turma</button>
                     </div>
                 </div>
 

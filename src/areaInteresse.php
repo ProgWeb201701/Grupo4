@@ -13,7 +13,7 @@
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TCCs</title>
-	<!-- BOOTSTRAP STYLES-->
+    <!-- BOOTSTRAP STYLES-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
@@ -36,6 +36,7 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
+                        <li><a href="./perfil.php">Meu Perfil <i class="fa fa-user-circle "></i></a></li>
                         <li><a href="./action/logout.php">Sair <i class="fa fa-sign-out "></i></a></li>
                     </ul>
                 </div>
@@ -115,27 +116,26 @@
                                     $nomes = array();
 
                                     $sql = "SELECT `prof_has_interesse`.`siape`, `area_interesse`.*
-											FROM `area_interesse`
-											LEFT JOIN `prof_has_interesse` ON `prof_has_interesse`.`idInteresse` = `area_interesse`.`idInteresse`;";
+                                            FROM `area_interesse`
+                                            LEFT JOIN `prof_has_interesse` ON `prof_has_interesse`.`idInteresse` = `area_interesse`.`idInteresse`;";
                                     $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
 
                                     while($row = $resultado->fetch_assoc()) {
-                                    	$nomeInteresse = $row['nomeInteresse'];
-                                    	if (in_array($nomeInteresse, $nomes)) {
-                                    		//não faz nada
-                                    	} else {
-                                    		$nomes[] = $nomeInteresse;
-                                    		echo "<tr>
-                                                <td>
-                                                    ".$row["nomeInteresse"]."
-                                                </td>
-                                                <td>
-                                                    <input type='checkbox' name='check_box[]' value='".$row["idInteresse"]."' ";
-	                                        if ($row['siape']==$_SESSION['usuario']) {
-	                                        	echo "checked";
-	                                        }
-	                                        echo "/></td></tr>";
-                                    	}
+                                        $idInteresse = $row['idInteresse'];
+                                        if (in_array($idInteresse, $nomes)) {
+
+                                        } else {
+                                            $nomes[] = $idInteresse;
+                                            echo "<tr><td>".$row["nomeInteresse"]."</td><td><input type='checkbox' name='check_box[]' value='".$row["idInteresse"]."' ";
+
+                                            $sql2 = "SELECT * FROM prof_has_interesse WHERE siape = '".$_SESSION['usuario']."' AND idInteresse = '".$idInteresse."';";
+                                            $resultado2 = mysqli_query($connection, $sql2) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
+                                            $count = mysqli_num_rows($resultado2);
+                                            if ($count>0) {
+                                                echo "checked";
+                                            }
+                                            echo "/></td></tr>";
+                                        }
                                         
                                    }
                                 ?>

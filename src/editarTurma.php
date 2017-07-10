@@ -92,19 +92,7 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Olá, <?php 
-                                include_once './connection/connection.php';
-
-                                $conn = new Connection();
-                                $connection = $conn->getConnection();
-
-                                $sql = "SELECT nome FROM professor WHERE siape = '".$_SESSION['usuario']."'";
-
-                                $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
-
-                                $row = $resultado->fetch_assoc();
-                                        echo $row['nome'];
-                            ?></h2>
+                        <h2>Editar Turma:</h2>
                             <hr>
                     </div>
                 </div>
@@ -113,7 +101,7 @@
                <div class="row">
                 <form class="form-horizontal" action="./action/adicionaAluno.php" method="post">
                     <div class="col-md-12">
-                        <h3>Alunos cadastrados:</h3>
+                        
                         <table class="table table-striped table-hover table-responsive">
                             <thead>
                                 <tr>
@@ -155,21 +143,27 @@
                                                         ".$row["matricula"]."
                                                     </td>
                                                     <td>
-                                                    <input type='checkbox' name='check_box[]' value='".$row["matricula"]."'/>
+                                                    <input type='checkbox' name='check_box[]' value='".$row["matricula"]."'";
+
+                                                    $sql2 = "SELECT * FROM turma_has_aluno WHERE Aluno_matricula = '".$row["matricula"]."' AND Turma_nomeTurma = '".$Turma."';";
+                                                    $resultado2 = mysqli_query($connection, $sql2) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
+                                                    $count = mysqli_num_rows($resultado2);
+                                                    if ($count>0) {
+                                                        echo "checked";
+                                                    }
+
+                                                    echo "/>
                                                     </td>
                                                 </tr>";
                                     } 
                                 ?>
-                                <td>
-                                        <button type="submit" name="submit" class="btn btn-default">Adicionar alunos à sua turma</button>
-                                        </td>
-                                                    
-                                        </tr>
-                          
+                                
                                  </td>
                             </tbody>     
                       </div>
                         </table>
+                        <button type="submit" name="submit" class="btn btn-default">Salvar turma</button>
+
                     </div>
                 </div>
 
