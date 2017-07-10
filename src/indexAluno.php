@@ -124,7 +124,7 @@
                                     $conn = new Connection();
                                     $connection = $conn->getConnection();
 
-                                    $sql = "SELECT * FROM monografia INNER JOIN aluno ON matricula = aluno_matricula WHERE isFinal = '1';";
+                                    $sql = "SELECT * FROM monografia INNER JOIN aluno ON aluno.matricula = monografia.aluno_matricula LEFT JOIN turma_has_aluno ON aluno.matricula = turma_has_aluno.aluno_matricula WHERE isFinal = '1';";
 
                                     $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
 
@@ -140,11 +140,11 @@
                                                         ".$row["nome"]."
                                                     </td>
                                                     <td>
-                                                        TURMA
+                                                        ".$row["Turma_nomeTurma"]."
                                                     </td>
                                                     <td>
-                                                        <a href=''><i class='fa fa-download' aria-hidden='true'></i><span> Baixar</span></a>
-                                                    </td>
+                                                        <a href='./uploads/".$row['caminhoEntrega']."' target='_blank'><i class='fa fa-download' aria-hidden='true'></i><span> Baixar</span></a>
+                                                    </td>s
                                                 </tr>";
                                     } 
                                 ?>
