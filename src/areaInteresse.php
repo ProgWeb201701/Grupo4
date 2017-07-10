@@ -114,35 +114,29 @@
                                     $connection = $conn->getConnection();
 
 
-                                    $sql = "SELECT * FROM `area_interesse`;";
+                                    $sql = "SELECT `prof_has_interesse`.`siape`, `area_interesse`.*
+											FROM `area_interesse`
+											LEFT JOIN `prof_has_interesse` ON `prof_has_interesse`.`idInteresse` = `area_interesse`.`idInteresse`;";
                                     $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
 
-                                    $sqlcheck = "SELECT * FROM `prof_has_interesse` WHERE `prof_has_interesse`.`siape` = ".$_SESSION['usuario'].";";
-                                    $resultcheck = mysqli_query($connection, $sqlcheck) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
-
                                     while($row = $resultado->fetch_assoc()) {  
-                                    $rowcheck = mysqli_fetch_assoc($resultcheck);
-                                    if($rowcheck["idInteresse"] == $row["idInteresse"]){
-                                        $check = 'checked="checked"';
-                                    }        
-                                    
-                                            echo "<tr>
-                                                    <td>
-                                                        ".$row["nomeInteresse"]."
-                                                    </td>
-                                                    <td>
-                                                        <input type='checkbox' name='check_box[]' value='".$row["idInteresse"]."' ".$check." />
-                                                    </td>
-                                                </tr>";
-
-                                                $check='';
+                                        echo "<tr>
+                                                <td>
+                                                    ".$row["nomeInteresse"]."
+                                                </td>
+                                                <td>
+                                                    <input type='checkbox' name='check_box[]' value='".$row["idInteresse"]."' ";
+                                        if ($row['siape']==$_SESSION['usuario']) {
+                                        	echo "checked";
+                                        }
+                                        echo "/></td></tr>";
                                    } 
                                 ?>
                                 <tr>
                                 <td>
                                 </td>
                                         <td>
-                                        <button type="submit" name="submit" class="btn btn-default" margin->Salvar</button>
+                                        <button type="submit" name="submit" class="btn btn-default">Salvar</button>
                                         </td>
                                                     
                                         </tr>
@@ -153,23 +147,6 @@
 
                             </tbody>
                         </table>
-                        <?php 
-                                    include_once './connection/connection.php';
-
-                                    $conn = new Connection();
-                                    $connection = $conn->getConnection();
-
-
-                                    $sql = "SELECT * FROM `prof_has_interesse` WHERE `prof_has_interesse`.`siape` = ".$_SESSION['usuario'].";";
-                                    $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
-
-                                    while($row = $resultado->fetch_assoc()) {
-                                                            
-                                            echo $row["idInteresse"];
-                                            echo "</br>";       
-                                   } 
-                                
-                                ?>
                     </div>
                 </div>
                 </form>
