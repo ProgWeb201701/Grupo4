@@ -120,16 +120,18 @@
                                     $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
 
                                     while($row = $resultado->fetch_assoc()) {
+                                                            
+                                    
                                             echo "<tr>
                                                     <td>
                                                         ".$row["nomeInteresse"]."
                                                     </td>
                                                     <td>
-                                                        <input type='checkbox' name='check_box[]' value='".$row["idInteresse"]."'/>
-                                                    </td>
-                                                    
+                                                        <input type='checkbox' name='check_box[]' value='".$row["idInteresse"]."' />
+                                                    </td>  
                                                 </tr>";
-                                    } 
+                                   } 
+                                
                                 ?>
                                 <tr>
                                 <td>
@@ -146,7 +148,24 @@
 
                             </tbody>
                         </table>
-                        
+                        <?php 
+                                    include_once './connection/connection.php';
+
+                                    $conn = new Connection();
+                                    $connection = $conn->getConnection();
+
+
+                                    $sql = "SELECT * FROM `prof_has_interesse` WHERE `prof_has_interesse`.`siape` = ".$_SESSION['usuario'].";";
+
+                                    $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
+
+                                    while($row = $resultado->fetch_assoc()) {
+                                                            
+                                            echo $row["idInteresse"];
+                                            echo "</br>";       
+                                   } 
+                                
+                                ?>
                     </div>
                 </div>
                 </form>
