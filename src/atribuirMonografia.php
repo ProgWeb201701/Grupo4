@@ -69,9 +69,13 @@
                     <li>
                         <a href="#"><i class="fa fa-edit "></i>Monografia<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li>
-                                <a href="atribuirMonografia.php">Atribuir monografia</a>
-                            </li>
+                            
+                            <?php if($_SESSION['sou'] == 3){
+                                echo "<li><a href='atribuirMonografia.php'>Atribuir monografia</a></li>";} 
+                                if($_SESSION['sou']>1){
+                                    echo "<li><a href='avaliacoes.php'>Avaliações</a></li>";
+                                }
+                            ?>
                             <li>
                                 <a href="monografias.php">Monografias</a>
                             </li>

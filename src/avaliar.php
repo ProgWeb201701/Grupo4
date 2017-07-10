@@ -79,7 +79,10 @@
                         <ul class="nav nav-second-level">
                             
                             <?php if($_SESSION['sou'] == 3){
-                                    echo "<li><a href='atribuirMonografia.php'>Atribuir monografia</a></li>";} ?>
+                                    echo "<li><a href='atribuirMonografia.php'>Atribuir monografia</a></li>";}
+                                if($_SESSION['sou']>1){
+                                    echo "<li><a href='avaliacoes.php'>Avaliações</a></li>";
+                                } ?>
                             <li>
                                 <a href="monografias.php">Monografias</a>
                             </li>
