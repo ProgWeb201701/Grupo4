@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 10-Jul-2017 às 00:05
+-- Data de Criação: 10-Jul-2017 às 08:19
 -- Versão do servidor: 5.5.28
 -- versão do PHP: 5.3.19
 
@@ -181,6 +181,16 @@ CREATE TABLE IF NOT EXISTS `prof_has_interesse` (
   KEY `siape` (`siape`),
   KEY `idInteresse` (`idInteresse`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `prof_has_interesse`
+--
+
+INSERT INTO `prof_has_interesse` (`siape`, `idInteresse`) VALUES
+('987654321', 7),
+('123', 1),
+('123', 11),
+('123', 13);
 
 -- --------------------------------------------------------
 
