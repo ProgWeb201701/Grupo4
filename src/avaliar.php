@@ -65,7 +65,8 @@
 
 
                     <li>
-                        <a href="indexProfessor.html"><i class="fa fa-desktop "></i>Inicio</a>
+                        <a href=<?php if($_SESSION['sou'] == 2){
+                                        echo "'indexProfessor.php'";} else {echo "'indexCoordenador.php'";} ?>><i class="fa fa-desktop "></i>Inicio</a>
                     </li>
                     <li>
                         <a href="turmas.php"><i class="fa fa-users "></i>Turmas</a>

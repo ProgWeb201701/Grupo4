@@ -51,7 +51,7 @@
 
 
                     <li>
-                        <a href="indexAluno.html"><i class="fa fa-desktop "></i>Inicio</a>
+                        <a href="indexAluno.php"><i class="fa fa-desktop "></i>Inicio</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-edit "></i>Monografia<span class="fa arrow"></span></a>
