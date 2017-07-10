@@ -22,7 +22,7 @@ if (isset($_POST['submit']))
 
 	if($resultado){
 		$_SESSION['usuario'] = $usuario;
-		echo"<script language='javascript' type='text/javascript'>alert('Perfil atualizado com sucesso!');window.location.href='../Login.html';</script>";
+		echo"<script language='javascript' type='text/javascript'>alert('Perfil atualizado com sucesso!');window.location.href='../login.html';</script>";
 	} else {
 		echo"<script language='javascript' type='text/javascript'>alert('Não foi possivel atualizar seu perfil!');</script>";
 	}
