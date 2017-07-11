@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 10-Jul-2017 às 11:29
+-- Data de Criação: 11-Jul-2017 às 14:38
 -- Versão do servidor: 5.5.28
 -- versão do PHP: 5.3.19
 
@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `aluno` (
   `nome` varchar(50) NOT NULL,
   `senha` varchar(45) NOT NULL,
   `email` varchar(50) NOT NULL,
+  `foto` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`matricula`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -40,15 +41,15 @@ CREATE TABLE IF NOT EXISTS `aluno` (
 -- Extraindo dados da tabela `aluno`
 --
 
-INSERT INTO `aluno` (`matricula`, `nome`, `senha`, `email`) VALUES
-('101001010', 'Gustavo Girardon', '123', 'gutinhoso@gmail.com'),
-('1115151515', 'Josefino Andrade', '11111', 'jose@fino.com'),
-('141150222', 'Allan Pedroso', '123', 'allandinbr@hotmail.com'),
-('141150442', 'Victor Costa', '12345', 'victorsc_rs@gmail.com'),
-('151150450', 'Cabrito', 'xexe', 'confia@call.com'),
-('151151483', 'Rodrigo Machado', '54321', 'rodrigo.blizzard92@gmail.com'),
-('1818', 'Piupiu Macabro dos Santos', '123', 'piupiu@p.com'),
-('99999', 'Hyuuga Neji', '99999', 'neji@hyuuga.com');
+INSERT INTO `aluno` (`matricula`, `nome`, `senha`, `email`, `foto`) VALUES
+('101001010', 'Gustavo Girardon', '123', 'gutinhoso@gmail.com', NULL),
+('1115151515', 'Josefino Andrade', '11111', 'jose@fino.com', NULL),
+('141150222', 'Allan Pedroso', '123', 'allandinbr@hotmail.com', NULL),
+('141150442', 'Victor Costa', '12345', 'victorsc_rs@gmail.com', NULL),
+('151150450', 'Cabrito', 'xexe', 'confia@call.com', NULL),
+('151151483', 'Rodrigo Machado', '54321', 'rodrigo.blizzard92@gmail.com', NULL),
+('1818', 'Piupiu Macabro dos Santos', '123', 'piupiu@p.com', '../fotos/piupiu.jpg'),
+('99999', 'Hyuuga Neji', '99999', 'neji@hyuuga.com', NULL);
 
 -- --------------------------------------------------------
 
@@ -97,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `avaliacao` (
   `professor_siape` varchar(20) NOT NULL,
   PRIMARY KEY (`idAvaliacao`),
   KEY `professor_siape` (`professor_siape`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -127,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `monografia` (
 
 INSERT INTO `monografia` (`idMonografia`, `versao`, `titulo`, `caminhoEntrega`, `abstract`, `aluno_matricula`, `professor_orientador`, `Professor_Coorientador`, `isFinal`) VALUES
 (1, '1', 'Estudo das lontras da Noruega e seus comportamentos', 'ccbdafd99af01cea28068358eaf36389.pdf', 'sdsdddsssssssssssssssssssssss', '141150442', '123', '123', 0),
-(2, '2', 'Desenvolvimento de Gerador de Geradores usando um Gerador de Gerador de Geradores.', '0d4f05d2ff2ef9a07d4f1a3dbd9cf33b.pdf', 'O uso de geradores de codigo e artefatos prontos para um melhor aproveitamento de tempo de jogo', '151151483', '123456789', '987654321', 1),
+(2, '2', 'Desenvolvimento de Gerador de Geradores usando um Gerador de Gerador de Geradores.', '533b6a7cb51b43c293d89b13bd5bfd63.pdf', 'aaa', '151151483', '123456789', '987654321', 1),
 (5, NULL, 'TCC XOIA MANO MUTO LOCO DEMAIS BEM LOCO NE', NULL, NULL, '141150222', '123', '123456789', 0);
 
 -- --------------------------------------------------------
@@ -141,6 +142,7 @@ CREATE TABLE IF NOT EXISTS `professor` (
   `nome` varchar(50) NOT NULL,
   `senha` varchar(45) NOT NULL,
   `email` varchar(50) NOT NULL,
+  `foto` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`siape`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -148,12 +150,12 @@ CREATE TABLE IF NOT EXISTS `professor` (
 -- Extraindo dados da tabela `professor`
 --
 
-INSERT INTO `professor` (`siape`, `nome`, `senha`, `email`) VALUES
-('101010', 'Gilleanes Guedes', '12345', 'gigi@leanes.com.br'),
-('11111', 'Andrea Bordin', '12345', 'deia@gmail.com'),
-('123', 'Bernardino', '12345', 'bernardino@gmail.com'),
-('123456789', 'Joao Pablo', '123', 'lalal@lalal.com'),
-('987654321', 'Elder', '123', 'leoric@unipampa.com');
+INSERT INTO `professor` (`siape`, `nome`, `senha`, `email`, `foto`) VALUES
+('101010', 'Gilleanes Guedes', '12345', 'gigi@leanes.com.br', NULL),
+('11111', 'Andrea Bordin', '12345', 'deia@gmail.com', NULL),
+('123', 'Bernardino', '12345', 'bernardino@gmail.com', '../fotos/bernardino.jpg'),
+('123456789', 'Joao Pablo', '123', 'lalal@lalal.com', NULL),
+('987654321', 'Elder', '123', 'leoric@unipampa.com', NULL);
 
 -- --------------------------------------------------------
 

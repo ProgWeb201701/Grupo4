@@ -53,7 +53,30 @@
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
                     <li class="text-center user-image-back">
-                        <img src="assets/img/find_user.png" class="img-responsive user-image" />
+                        <img src=<?php 
+                                include_once './connection/connection.php';
+
+                                $conn = new Connection();
+                                $connection = $conn->getConnection();
+                                $sql;
+
+                                if($_SESSION['sou']>1){
+                                    $sql = "SELECT foto FROM professor WHERE siape = '".$_SESSION['usuario']."'";
+                                }
+                                if($_SESSION['sou']==1){
+                                    $sql = "SELECT foto FROM aluno WHERE matricula = '".$_SESSION['usuario']."'";
+                                }
+
+                                $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
+
+                                $row = $resultado->fetch_assoc();
+                                if($row['foto'] == ''){
+                                    echo "'assets/img/find_user.png'";
+                                } else {
+                                        echo "'src/".$row['foto']."'";
+                                    }
+                            ?>
+                         class="img-responsive user-image" />
             
                     </li>
 
