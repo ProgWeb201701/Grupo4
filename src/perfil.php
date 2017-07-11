@@ -194,8 +194,13 @@
                       </div>";
 
                             ?>
-
-                            <input type="file" name="foto" class="control-label col-sm-2"/>
+                            <div class="form-group">
+                        <label class="control-label col-sm-2" for="foto">Foto:</label>
+                        <div class="col-sm-8">
+                          <input type="file" class="form-control" id="foto" name='foto'>
+                        </div>
+                      </div>
+                  
                 
                       <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-8">
