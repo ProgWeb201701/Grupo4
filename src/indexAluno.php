@@ -167,7 +167,7 @@
                                                     </td>
                                                     <td>
                                                         <a href='./uploads/".$row['caminhoEntrega']."' target='_blank'><i class='fa fa-download' aria-hidden='true'></i><span> Baixar</span></a>
-                                                    </td>s
+                                                    </td>
                                                 </tr>";
                                     } 
                                 ?>
