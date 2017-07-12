@@ -80,8 +80,8 @@
                                 if($row['foto'] == ''){
                                     echo "'assets/img/find_user.png'";
                                 } else {
-                                        echo "'src/".$row['foto']."'";
-                                    }
+                                    echo "'src/".$row['foto']."'";
+                                }
                             ?>
                          class="img-responsive user-image" />
             

@@ -141,7 +141,7 @@
                                     $conn = new Connection();
                                     $connection = $conn->getConnection();
 
-                                    $sql = "SELECT * FROM avaliacao INNER JOIN professor ON siape = professor_siape INNER JOIN prof_avalia_monografia ON prof_avalia_monografia.professor_siape = avaliacao.professor_siape;";
+                                    $sql = "SELECT * FROM avaliacao INNER JOIN professor ON siape = professor_siape;";
 
                                     $resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
 
