@@ -26,14 +26,14 @@ if (isset($_POST['submit']))
 		if ($destino=="../fotos/") {
 			$sql = "UPDATE professor SET nome = '$nome', siape = '$usuario', senha = '$senha', email = '$email' WHERE siape = '$usuario';";
 		} else {
-        $sql = "UPDATE professor SET nome = '$nome', siape = '$usuario', senha = '$senha', email = '$email', foto = '$destino' WHERE siape = '$usuario';";
+        	$sql = "UPDATE professor SET nome = '$nome', siape = '$usuario', senha = '$senha', email = '$email', foto = '$destino' WHERE siape = '$usuario';";
         }
         
     } else {
     	if ($destino=="../fotos/") {
-        	$sql = "UPDATE aluno SET nome = '$nome', matricula = '$usuario', senha = '$senha', email = '$email', foto = '$destino' WHERE matricula = '$usuario';";
+        	$sql = "UPDATE aluno SET nome = '$nome', matricula = '$usuario', senha = '$senha', email = '$email' WHERE matricula = '$usuario';";
     	} else {
-			$sql = "UPDATE aluno SET nome = '$nome', matricula = '$usuario', senha = '$senha', email = '$email' WHERE matricula = '$usuario';";
+			$sql = "UPDATE aluno SET nome = '$nome', matricula = '$usuario', senha = '$senha', email = '$email', foto = '$destino' WHERE matricula = '$usuario';";
     	}
     }
 
