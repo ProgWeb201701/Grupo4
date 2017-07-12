@@ -28,22 +28,10 @@ if (isset($_POST['submit']))
 		$caminhoFeedback = $newfilename;
 		$observacao = $_POST["comentarios"];
 
-		$sql = "INSERT INTO avaliacao(nota, caminhoFeedback, observacao) VALUES ('".$nota."', '".$caminhoFeedback."', '".$observacao."');";
-		$sqlconsulta ="SELECT max(idAvaliacao) FROM avaliacao";
-
+		$sql = "INSERT INTO avaliacao(nota, caminhoFeedback, observacao, professor_siape) VALUES ('".$nota."', '".$caminhoFeedback."', '".$observacao."', '".$_SESSION['usuario']."');";
 
 		$resultado = mysqli_query($connection, $sql) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
-		$resultado2 = mysqli_query($connection, $sqlconsulta) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
-
-		$idAvaliacao;
-		while($row = $resultado2->fetch_assoc()) {
-			$idAvaliacao = $row["max(idAvaliacao)"];
-		}
-		$sql4 = "INSERT INTO prof_avalia_monografia (Professor_siape, Monografia_idMonografia, Avaliacao_idAvaliacao) VALUES (".$_SESSION['usuario'].", '$idMonografia', ".$idAvaliacao.");";
-
-
-		$resultado = mysqli_query($connection, $sql4) or die ("Erro ao conectar na tabela " . mysqli_error($connection));
-
+		
 		if ($resultado) {
 			move_uploaded_file($_FILES["feedback"]["tmp_name"], "../uploads/" . $newfilename);
 			echo"<script language='javascript' type='text/javascript'>alert('Avaliação enviada com sucesso!');window.location.href='../avaliacoes.php';</script>";
